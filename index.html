@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Guide de la Grande messe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Mise en page : une colonne de lecture (~66 car.), bandeau d'ouverture bleu de Prusse, filets dorés comme sur une partition gravée. */
+:root {
+  --bg: #EDEFF3;
+  --surface: #F8F9FB;
+  --ink: #1A2030;
+  --muted: #535B6E;
+  --rule: #C8CDD8;
+  --accent: #7E611B;      /* or terni */
+  --prussian: #1F3A5F;
+  --hero-bg: #1B2F4D;
+  --hero-ink: #EEE8D8;
+  --hero-accent: #D9B566;
+  --font-display: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --font-text: "Spectral", Georgia, "Times New Roman", serif;
+  --font-ui: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --measure: 40rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F141E; --surface: #161D2A; --ink: #E4E0D4; --muted: #9AA2B4; --rule: #2B3446;
+    --accent: #D2AE5E; --prussian: #93B3DA; --hero-bg: #121C2E; --hero-ink: #EEE8D8; --hero-accent: #D9B566;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F141E; --surface: #161D2A; --ink: #E4E0D4; --muted: #9AA2B4; --rule: #2B3446;
+  --accent: #D2AE5E; --prussian: #93B3DA; --hero-bg: #121C2E; --hero-ink: #EEE8D8; --hero-accent: #D9B566;
+  color-scheme: dark;
+}
+/* Mode salle : presque noir, texte ambré peu lumineux, pour ne pas éblouir les voisins. */
+:root[data-salle] {
+  --bg: #000; --surface: #080706; --ink: #9C8A6C; --muted: #6A5D4A; --rule: #1E1A15;
+  --accent: #A3814A; --prussian: #8C7A5E; --hero-bg: #000; --hero-ink: #9C8A6C; --hero-accent: #A3814A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+:root[data-salle] body { font-size: 1.2rem; }
+a { color: var(--prussian); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+em { font-style: italic; }
+
+.wrap {
+  max-width: calc(var(--measure) + 2rem);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Ouverture ---------- */
+.hero {
+  background: var(--hero-bg);
+  color: var(--hero-ink);
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+  padding-top: calc(env(safe-area-inset-top, 0px) + 3rem);
+  padding-bottom: 2.5rem;
+}
+.hero .wrap { display: grid; gap: 1.1rem; }
+.eyebrow {
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--hero-accent);
+}
+.hero h1 { font-size: clamp(2.4rem, 9vw, 3.9rem); }
+.hero h1 i { color: var(--hero-accent); }
+.hero .lede { font-size: 1.15rem; max-width: 34rem; opacity: .92; }
+.staff { width: 100%; max-width: 22rem; height: auto; display: block; }
+.staff line { stroke: var(--hero-accent); stroke-width: 1; opacity: .55; }
+.staff text { fill: var(--hero-accent); font-family: var(--font-text); }
+.credits { font-family: var(--font-ui); font-size: .95rem; line-height: 1.5; opacity: .85; }
+
+/* ---------- Barre de navigation ---------- */
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--surface); border-bottom: 1px solid var(--rule);
+}
+.bar .wrap { display: flex; align-items: center; gap: .75rem; padding-block: .5rem; }
+.bar nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar ul { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; white-space: nowrap; }
+.bar nav a {
+  display: block; padding: .35rem .6rem; border-radius: 999px;
+  font-family: var(--font-ui); font-size: .88rem; font-weight: 600;
+  color: var(--muted); text-decoration: none;
+}
+.bar nav a:hover { color: var(--ink); background: var(--bg); }
+.salle-btn {
+  flex: none; font-family: var(--font-ui); font-size: .85rem; font-weight: 600;
+  padding: .4rem .75rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--accent); background: transparent; color: var(--accent);
+}
+.salle-btn[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+
+/* ---------- Sections ---------- */
+main { padding-block: 1rem 4rem; }
+section { padding-block: 2.75rem 0.5rem; scroll-margin-top: 4rem; }
+section > .wrap { display: grid; gap: 1.1rem; }
+.sec-label {
+  font-family: var(--font-ui); font-size: .75rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: .75rem;
+}
+.sec-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+h2 { font-size: clamp(1.9rem, 6vw, 2.5rem); }
+h3 { font-size: 1.45rem; }
+.meta { font-family: var(--font-ui); font-size: .92rem; color: var(--muted); }
+
+/* Programme */
+.prog { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.prog li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .25rem .75rem; padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+.prog .n { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); line-height: 1.1; }
+.prog .t { font-size: 1.12rem; font-weight: 600; }
+.prog .d { grid-column: 2; font-family: var(--font-ui); font-size: .92rem; color: var(--muted); }
+
+.note {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 1rem 1.1rem; font-family: var(--font-ui); font-size: .97rem; line-height: 1.55;
+}
+.note strong { color: var(--accent); }
+
+blockquote {
+  margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent);
+  font-style: italic; color: var(--ink);
+}
+blockquote footer { font-style: normal; font-family: var(--font-ui); font-size: .88rem; color: var(--muted); margin-top: .4rem; }
+
+/* Influences */
+.infl { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.infl div { background: var(--surface); padding: 1rem 1.1rem; display: grid; gap: .35rem; align-content: start; min-width: 0; }
+.infl h3 { font-size: 1.2rem; }
+.infl p { font-size: .97rem; }
+.infl .where { font-family: var(--font-ui); font-size: .85rem; color: var(--accent); font-weight: 600; }
+
+/* Frise */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.timeline li { display: grid; grid-template-columns: 4.2rem 1fr; gap: .9rem; align-items: baseline; }
+.timeline time { font-family: var(--font-ui); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); font-size: .95rem; }
+
+/* Guide d'écoute */
+.part-title { font-family: var(--font-ui); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 1rem; }
+.mvt { border-top: 1px solid var(--rule); padding-block: 1.1rem; display: grid; gap: .55rem; }
+.mvt header { display: grid; gap: .3rem; }
+.mvt h3 { font-size: 1.5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+.tag {
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 600; line-height: 1;
+  padding: .3rem .5rem; border-radius: 4px; border: 1px solid var(--rule); color: var(--muted); background: var(--surface);
+}
+.tag.key { color: var(--accent); border-color: currentColor; background: transparent; }
+.tag.voices { color: var(--prussian); }
+.listen { font-size: 1rem; }
+.listen b { font-family: var(--font-ui); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-right: .35rem; }
+
+details.text { border-radius: 6px; }
+details.text summary {
+  cursor: pointer; list-style: none; font-family: var(--font-ui); font-size: .88rem; font-weight: 600; color: var(--prussian);
+  display: inline-flex; align-items: center; gap: .4rem; padding-block: .2rem;
+}
+details.text summary::-webkit-details-marker { display: none; }
+details.text summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.2rem; height: 1.2rem; border: 1px solid currentColor; border-radius: 50%; font-size: .85rem; line-height: 1; }
+details.text[open] summary::before { content: "−"; }
+.bi { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem 1.25rem; margin-top: .6rem; padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.bi .la { font-style: italic; }
+.bi .fr { color: var(--muted); }
+.bi p + p { margin: 0; }
+@media (max-width: 34rem) {
+  .bi { grid-template-columns: 1fr; }
+  .bi .fr { margin-bottom: .55rem; }
+}
+
+/* Qui chante quoi */
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-family: var(--font-ui); font-size: .9rem; min-width: 30rem; }
+th, td { padding: .55rem .6rem; text-align: center; border-bottom: 1px solid var(--rule); }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+tbody th { font-weight: 600; }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+td.on { color: var(--accent); font-weight: 700; }
+
+.people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .75rem 1.5rem; }
+.people li { display: grid; gap: .1rem; border-top: 1px solid var(--rule); padding-top: .6rem; }
+.people .name { font-size: 1.15rem; font-weight: 600; }
+.people .role { font-family: var(--font-ui); font-size: .88rem; color: var(--muted); }
+
+/* Lexique */
+dl.lex { margin: 0; display: grid; gap: .9rem; }
+dl.lex div { display: grid; gap: .15rem; }
+dl.lex dt { font-family: var(--font-display); font-size: 1.25rem; color: var(--accent); }
+dl.lex dd { margin: 0; }
+
+ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+
+footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block: 1.5rem; font-family: var(--font-ui); font-size: .88rem; color: var(--muted); }
+
+/* En mode salle, on masque tout ce qui n'aide pas à suivre la musique. */
+:root[data-salle] .hide-salle { display: none; }
+:root[data-salle] details.text .bi { border-color: transparent; }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Guide du spectateur · Académie du Palais royal</p>
+    <h1>Grande messe <i>en ut mineur</i></h1>
+    <svg class="staff" viewBox="0 0 352 64" role="img" aria-label="Portée avec l'armure d'ut mineur : trois bémols">
+      <line x1="0" x2="352" y1="12" y2="12"/><line x1="0" x2="352" y1="22" y2="22"/>
+      <line x1="0" x2="352" y1="32" y2="32"/><line x1="0" x2="352" y1="42" y2="42"/>
+      <line x1="0" x2="352" y1="52" y2="52"/>
+      <text x="14" y="38" font-size="26">♭</text>
+      <text x="30" y="23" font-size="26">♭</text>
+      <text x="46" y="43" font-size="26">♭</text>
+      <text x="72" y="36" font-size="13" font-style="italic">ut mineur, trois bémols à la clé</text>
+    </svg>
+    <p class="lede">Bizet, Mozart et Rameau en une soirée. Ce guide vous donne le contexte des œuvres, ce qu'il faut guetter pendant l'écoute et le texte latin traduit, pour suivre la messe pendant le concert.</p>
+    <p class="credits">Thaïs Raï-Westphal, Charlotte Mercier, Yann Salaün, Angelo Heck<br>Chœur et orchestre de l'Académie du Palais royal<br>Jean-Philippe Sarcos, direction</p>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <nav aria-label="Sections du guide">
+      <ul>
+        <li><a href="#programme">Programme</a></li>
+        <li><a href="#bizet">Bizet</a></li>
+        <li><a href="#mozart">Mozart</a></li>
+        <li><a href="#ecoute">Guide d'écoute</a></li>
+        <li><a href="#rameau">À vous de chanter</a></li>
+        <li><a href="#interpretes">Interprètes</a></li>
+        <li><a href="#lexique">Lexique</a></li>
+        <li><a href="#salle">En salle</a></li>
+      </ul>
+    </nav>
+    <button class="salle-btn" id="salle-toggle" type="button" aria-pressed="false" title="Écran très sombre pour lire pendant le concert">Mode salle</button>
+  </div>
+</div>
+
+<main>
+
+<section id="programme" class="hide-salle">
+  <div class="wrap">
+    <p class="sec-label">Le programme</p>
+    <h2>Trois œuvres, trois siècles de chant</h2>
+    <ol class="prog">
+      <li><span class="n">I</span><span class="t">Bizet, Symphonie « Roma »</span><span class="d">1869 · Premier mouvement : « Une chasse dans la forêt d'Ostie » · orchestre seul</span></li>
+      <li><span class="n">II</span><span class="t">Mozart, Grande messe en ut mineur, KV 427</span><span class="d">1783 · Chœur, quatre solistes et orchestre · environ 55 minutes</span></li>
+      <li><span class="n">III</span><span class="t">Rameau, La Nuit</span><span class="d">En bis · chœur participatif : c'est vous qui chantez</span></li>
+    </ol>
+    <div class="note"><strong>Avant d'entrer :</strong> lisez la page « Mozart » et survolez le guide d'écoute. Pendant le concert, touchez <strong>Mode salle</strong> en haut de l'écran : la page passe en très faible luminosité pour suivre le texte latin sans gêner vos voisins.</div>
+  </div>
+</section>
+
+<section id="bizet" class="hide-salle">
+  <div class="wrap">
+    <p class="sec-label">Ouverture · Bizet</p>
+    <h2>Une chasse dans la forêt d'Ostie</h2>
+    <p class="meta">Georges Bizet (1838-1875) · Symphonie en ut majeur « Roma », premier mouvement</p>
+    <p>Bien avant <em>Carmen</em>, Bizet a 19 ans quand il remporte le prix de Rome, en 1857. Le prix lui offre un séjour à la Villa Médicis, et il découvre une Italie qui le marque durablement. La symphonie « Roma » est née de ces souvenirs. Il la reprend et la corrige pendant une dizaine d'années, sans jamais vraiment s'en satisfaire.</p>
+    <p>Le premier mouvement peint un paysage : la forêt de pins qui borde la mer près d'Ostie, l'ancien port de Rome. Il s'ouvre dans le calme, avec les cors au premier plan, puis la chasse s'élance et l'orchestre s'anime.</p>
+    <p class="listen"><b>À écouter</b>Le contraste entre l'introduction paisible et l'énergie de la course. Les cors, instruments de la chasse par excellence, servent de fil conducteur.</p>
+    <div class="note"><strong>Pourquoi Bizet avant Mozart ?</strong> Les deux œuvres sont en <em>ut</em> : ut majeur pour Bizet, ut mineur pour Mozart. On passe de la lumière d'un paysage romain à la gravité d'une messe.</div>
+  </div>
+</section>
+
+<section id="mozart" class="hide-salle">
+  <div class="wrap">
+    <p class="sec-label">L'œuvre · Mozart</p>
+    <h2>Une messe pour Constance</h2>
+    <p class="meta">Wolfgang Amadeus Mozart (1756-1791) · Messe en ut mineur, KV 427 · Vienne, 1782-1783</p>
+    <p>En 1781, Mozart claque la porte de son employeur, le prince-archevêque de Salzbourg, et s'installe à Vienne en musicien indépendant. L'été suivant, il épouse Constance Weber, malgré les réticences de son père Leopold.</p>
+    <p>C'est dans ce contexte qu'il entreprend une grande messe, sans aucune commande. Il l'explique à son père dans une lettre de janvier 1783 : il s'était promis en son cœur d'écrire une messe s'il parvenait à amener Constance à Salzbourg comme épouse. La partition à moitié écrite est, dit-il, la preuve qu'il tient parole.</p>
+    <blockquote>
+      La partition de la moitié d'une messe, qui attend encore d'être achevée, est la meilleure preuve de ma promesse.
+      <footer>Mozart à son père, 4 janvier 1783 (traduction libre)</footer>
+    </blockquote>
+    <p>La messe est créée à Salzbourg en octobre 1783, en l'abbaye Saint-Pierre. Constance y chante l'une des parties de soprano.</p>
+
+    <h3>Une œuvre inachevée</h3>
+    <p>Mozart n'a jamais terminé cette messe, et personne ne sait vraiment pourquoi. Le Kyrie et le Gloria sont complets. Le Credo s'arrête après l'« Et incarnatus est », avec une orchestration en partie esquissée seulement. Le Sanctus et le Benedictus nous sont parvenus avec des parties manquantes, qu'il a fallu reconstituer. L'Agnus Dei n'a jamais été écrit.</p>
+    <p>Mozart ne l'a pas oubliée pour autant : en 1785, il en recycle une grande partie dans une cantate italienne, <em>Davide penitente</em>. Aujourd'hui, plusieurs musicologues ont proposé des reconstitutions ; ce que vous entendrez dépend de la version choisie par le chef.</p>
+
+    <h3>Tout ce que Mozart savait faire</h3>
+    <p>À Vienne, le baron van Swieten organise chaque dimanche des séances où Mozart découvre les fugues de Bach et les oratorios de Haendel. Il en sort bouleversé, et cette messe en porte la trace. Il y réunit quatre traditions, et chacune a ses moments phares :</p>
+    <div class="infl">
+      <div><h3>Bach et Haendel</h3><p>La grandeur baroque : fugues serrées, rythmes pointés solennels, chœurs massifs.</p><span class="where">Kyrie · Qui tollis · Cum Sancto Spiritu</span></div>
+      <div><h3>La virtuosité italienne</h3><p>Des airs écrits pour des voix agiles, pleins de vocalises, comme à l'opéra de Naples.</p><span class="where">Laudamus te · Et incarnatus est</span></div>
+      <div><h3>Les doubles chœurs de Venise</h3><p>Deux chœurs qui se répondent dans l'espace, à la manière de Saint-Marc de Venise.</p><span class="where">Qui tollis · Sanctus · Osanna</span></div>
+      <div><h3>Le charme et le drame de l'opéra</h3><p>Duos et trios où les voix dialoguent comme des personnages sur scène.</p><span class="where">Domine Deus · Quoniam · Benedictus</span></div>
+    </div>
+
+    <h3>Repères</h3>
+    <ol class="timeline">
+      <li><time>1781</time><span>Mozart quitte Salzbourg et s'installe à Vienne.</span></li>
+      <li><time>1782</time><span>Il découvre Bach et Haendel chez van Swieten. Il épouse Constance Weber en août.</span></li>
+      <li><time>1783</time><span>Lettre du vœu en janvier. Création de la messe, inachevée, à Salzbourg en octobre.</span></li>
+      <li><time>1785</time><span>La musique de la messe devient la cantate <em>Davide penitente</em>.</span></li>
+      <li><time>1791</time><span>Mort de Mozart, qui laisse une autre œuvre sacrée inachevée : le Requiem.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="ecoute">
+  <div class="wrap">
+    <p class="sec-label">Guide d'écoute</p>
+    <h2>La messe, mouvement par mouvement</h2>
+    <p class="hide-salle">Une messe met en musique les cinq prières de l'office catholique qui ne changent pas d'un jour à l'autre : Kyrie, Gloria, Credo, Sanctus et Agnus Dei. Mozart découpe chacune en plusieurs numéros. Touchez « Texte et traduction » pour suivre les paroles.</p>
+    <p class="note hide-salle"><strong>N'applaudissez pas entre les mouvements :</strong> la messe forme un tout. Les applaudissements viennent à la fin, après l'Osanna final.</p>
+
+    <p class="part-title">Kyrie</p>
+    <article class="mvt">
+      <header>
+        <h3>Kyrie</h3>
+        <div class="tags"><span class="tag key">ut mineur</span><span class="tag">Andante moderato</span><span class="tag voices">Chœur · Soprano I</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Un début sombre et grave, chargé de supplication. Au centre, sur « Christe eleison », la soprano s'élève seule au-dessus du chœur, comme une lumière dans l'obscurité. Puis le chœur revient avec la gravité du début.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Kyrie eleison.</p><p class="fr">Seigneur, prends pitié.</p>
+          <p class="la">Christe eleison.</p><p class="fr">Christ, prends pitié.</p>
+          <p class="la">Kyrie eleison.</p><p class="fr">Seigneur, prends pitié.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Gloria</p>
+    <article class="mvt">
+      <header>
+        <h3>Gloria in excelsis</h3>
+        <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Allegro vivace</span><span class="tag voices">Chœur</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Après le Kyrie, la lumière éclate : trompettes, timbales et chœur. Mozart rend hommage aux grands chœurs de Haendel. Le ton se fait plus doux sur « et in terra pax ».</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Gloria in excelsis Deo,</p><p class="fr">Gloire à Dieu au plus haut des cieux,</p>
+          <p class="la">et in terra pax hominibus bonae voluntatis.</p><p class="fr">et paix sur la terre aux hommes de bonne volonté.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Laudamus te</h3>
+        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Allegro aperto</span><span class="tag voices">Soprano II</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Un véritable air d'opéra italien, brillant et joyeux. La soprano enchaîne vocalises et grands sauts, presque comme un instrument.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Laudamus te, benedicimus te,</p><p class="fr">Nous te louons, nous te bénissons,</p>
+          <p class="la">adoramus te, glorificamus te.</p><p class="fr">nous t'adorons, nous te glorifions.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Gratias</h3>
+        <div class="tags"><span class="tag key">la mineur</span><span class="tag">Adagio</span><span class="tag voices">Chœur à 5 voix</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Un moment très bref et recueilli, aux harmonies tendues. Le chœur se divise en cinq voix, ce qui donne une matière plus dense.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Gratias agimus tibi propter magnam gloriam tuam.</p><p class="fr">Nous te rendons grâce pour ton immense gloire.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Domine Deus</h3>
+        <div class="tags"><span class="tag key">ré mineur</span><span class="tag">Allegro moderato</span><span class="tag voices">Sopranos I et II</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Les deux sopranos se poursuivent, s'imitent et s'entrelacent. Fermez les yeux et suivez l'une des deux voix : l'autre lui répond sans cesse.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Domine Deus, Rex caelestis,</p><p class="fr">Seigneur Dieu, Roi du ciel,</p>
+          <p class="la">Deus Pater omnipotens.</p><p class="fr">Dieu le Père tout-puissant.</p>
+          <p class="la">Domine Fili unigenite, Jesu Christe.</p><p class="fr">Seigneur, Fils unique, Jésus-Christ.</p>
+          <p class="la">Domine Deus, Agnus Dei, Filius Patris.</p><p class="fr">Seigneur Dieu, Agneau de Dieu, Fils du Père.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Qui tollis</h3>
+        <div class="tags"><span class="tag key">sol mineur</span><span class="tag">Largo</span><span class="tag voices">Double chœur à 8 voix</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Le sommet dramatique de la messe. Deux chœurs se répondent et s'unissent, portés par des rythmes pointés implacables à l'orchestre, comme une procession écrasante. Notez la répétition obsédante de « miserere nobis ».</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Qui tollis peccata mundi, miserere nobis.</p><p class="fr">Toi qui enlèves les péchés du monde, prends pitié de nous.</p>
+          <p class="la">Qui tollis peccata mundi, suscipe deprecationem nostram.</p><p class="fr">Toi qui enlèves les péchés du monde, reçois notre prière.</p>
+          <p class="la">Qui sedes ad dexteram Patris, miserere nobis.</p><p class="fr">Toi qui es assis à la droite du Père, prends pitié de nous.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Quoniam</h3>
+        <div class="tags"><span class="tag key">mi mineur</span><span class="tag">Allegro</span><span class="tag voices">Sopranos I et II · Ténor</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Un trio vif et serré, presque une scène d'ensemble d'opéra. Le ténor fait ici sa première apparition en soliste.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Quoniam tu solus Sanctus,</p><p class="fr">Car toi seul es saint,</p>
+          <p class="la">tu solus Dominus,</p><p class="fr">toi seul es Seigneur,</p>
+          <p class="la">tu solus Altissimus.</p><p class="fr">toi seul es le Très-Haut.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Jesu Christe · Cum Sancto Spiritu</h3>
+        <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Adagio · Alla breve</span><span class="tag voices">Chœur</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Quelques mesures solennelles, puis une grande fugue : les voix entrent l'une après l'autre sur le même thème, puis se superposent. C'est l'hommage le plus direct de Mozart à Bach. Le Gloria se termine dans l'éclat sur « Amen ».</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Jesu Christe,</p><p class="fr">Jésus-Christ,</p>
+          <p class="la">cum Sancto Spiritu in gloria Dei Patris. Amen.</p><p class="fr">avec le Saint-Esprit, dans la gloire de Dieu le Père. Amen.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Credo</p>
+    <article class="mvt">
+      <header>
+        <h3>Credo in unum Deum</h3>
+        <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Allegro maestoso</span><span class="tag voices">Chœur à 5 voix</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Une affirmation de foi énergique et rapide. Le chœur avance d'un bloc, porté par l'élan de l'orchestre.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Credo in unum Deum, Patrem omnipotentem,</p><p class="fr">Je crois en un seul Dieu, le Père tout-puissant,</p>
+          <p class="la">factorem caeli et terrae, visibilium omnium et invisibilium.</p><p class="fr">créateur du ciel et de la terre, de toutes les choses visibles et invisibles.</p>
+          <p class="la">Et in unum Dominum Jesum Christum, Filium Dei unigenitum,</p><p class="fr">Et en un seul Seigneur, Jésus-Christ, Fils unique de Dieu,</p>
+          <p class="la">et ex Patre natum ante omnia saecula.</p><p class="fr">né du Père avant tous les siècles.</p>
+          <p class="la">Deum de Deo, lumen de lumine, Deum verum de Deo vero,</p><p class="fr">Dieu né de Dieu, lumière née de la lumière, vrai Dieu né du vrai Dieu,</p>
+          <p class="la">genitum, non factum, consubstantialem Patri: per quem omnia facta sunt.</p><p class="fr">engendré, non pas créé, de même nature que le Père ; par lui tout a été fait.</p>
+          <p class="la">Qui propter nos homines et propter nostram salutem descendit de caelis.</p><p class="fr">Pour nous les hommes et pour notre salut, il descendit du ciel.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Et incarnatus est</h3>
+        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Andante · 6/8</span><span class="tag voices">Soprano I · flûte, hautbois, basson</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Le moment le plus célèbre de la messe, et peut-être le plus tendre. Sur un balancement de berceuse, la soprano chante la naissance du Christ avec trois instruments à vent solistes. Vers la fin, l'orchestre se tait : la voix, la flûte, le hautbois et le basson improvisent ensemble une longue cadence, suspendue dans le temps.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Et incarnatus est de Spiritu Sancto ex Maria Virgine,</p><p class="fr">Et par l'Esprit Saint, il a pris chair de la Vierge Marie,</p>
+          <p class="la">et homo factus est.</p><p class="fr">et s'est fait homme.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Sanctus</p>
+    <article class="mvt">
+      <header>
+        <h3>Sanctus · Osanna</h3>
+        <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Largo · Allegro comodo</span><span class="tag voices">Double chœur à 8 voix</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Le double chœur revient, majestueux, pour le « Saint, saint, saint ». L'Osanna est une fugue jubilatoire où les deux chœurs se renvoient le thème.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth.</p><p class="fr">Saint, saint, saint, le Seigneur, Dieu de l'univers.</p>
+          <p class="la">Pleni sunt caeli et terra gloria tua.</p><p class="fr">Le ciel et la terre sont remplis de ta gloire.</p>
+          <p class="la">Osanna in excelsis.</p><p class="fr">Hosanna au plus haut des cieux.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Benedictus · Osanna</h3>
+        <div class="tags"><span class="tag key">la mineur</span><span class="tag">Allegro comodo</span><span class="tag voices">Quatuor de solistes · double chœur</span></div>
+      </header>
+      <p class="listen"><b>À écouter</b>Les quatre solistes chantent enfin ensemble. C'est la seule intervention de la basse dans toute la messe ! Puis le double chœur reprend l'Osanna et conclut l'œuvre dans la joie.</p>
+      <details class="text"><summary>Texte et traduction</summary>
+        <div class="bi">
+          <p class="la">Benedictus qui venit in nomine Domini.</p><p class="fr">Béni soit celui qui vient au nom du Seigneur.</p>
+          <p class="la">Osanna in excelsis.</p><p class="fr">Hosanna au plus haut des cieux.</p>
+        </div>
+      </details>
+    </article>
+    <p class="meta">Les tonalités et les tempos sont ceux de la partition de Mozart. Selon la reconstitution retenue, l'enchaînement du Credo et du Sanctus peut légèrement varier.</p>
+  </div>
+</section>
+
+<section id="rameau">
+  <div class="wrap">
+    <p class="sec-label">En bis · Rameau</p>
+    <h2>À vous de chanter !</h2>
+    <p class="meta">Jean-Philippe Rameau (1683-1764) · La Nuit</p>
+    <p class="hide-salle">Vous avez peut-être cette mélodie en tête sans le savoir : c'est le chant que Clément Mathieu fait répéter à ses élèves dans le film <em>Les Choristes</em> (2004). À l'origine, la musique vient d'un chœur d'<em>Hippolyte et Aricie</em>, le premier opéra de Rameau, créé en 1733. Elle a été adaptée bien plus tard sur des paroles françaises.</p>
+    <p>Ce soir, Jean-Philippe Sarcos devient votre chef de chœur. Alors, serez-vous plutôt Morhange, Pépinot… ou pupitre ?</p>
+    <div class="note">
+      <strong>Pour bien chanter avec nous</strong>
+      <ul class="plain">
+        <li>Récupérez la partition et l'enregistrement sur la <a href="https://my.weezevent.com/grande-messe-en-ut" rel="noopener">page du concert</a>, et écoutez-le deux ou trois fois avant de venir.</li>
+        <li>Pas besoin de lire la musique : la mélodie est simple et se retient vite.</li>
+        <li>Suivez les gestes du chef : il vous indiquera quand respirer, quand commencer et quand chanter plus doucement.</li>
+        <li>C'est un chant de nuit : chantez doux, avec une voix posée, plutôt que fort.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="interpretes">
+  <div class="wrap">
+    <p class="sec-label">Les interprètes</p>
+    <h2>Sur scène ce soir</h2>
+    <ul class="people">
+      <li><span class="name">Thaïs Raï-Westphal</span><span class="role">Soprano I</span></li>
+      <li><span class="name">Charlotte Mercier</span><span class="role">Soprano II</span></li>
+      <li><span class="name">Yann Salaün</span><span class="role">Ténor</span></li>
+      <li><span class="name">Angelo Heck</span><span class="role">Basse</span></li>
+      <li><span class="name">Académie du Palais royal</span><span class="role">Chœur et orchestre</span></li>
+      <li><span class="name">Jean-Philippe Sarcos</span><span class="role">Direction</span></li>
+    </ul>
+    <h3>Qui chante quoi ?</h3>
+    <p class="hide-salle">Mozart répartit les solos de façon très inégale. Les deux sopranos portent l'essentiel des airs. La basse attend patiemment le Benedictus.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Mouvement</th><th scope="col">Sop. I</th><th scope="col">Sop. II</th><th scope="col">Ténor</th><th scope="col">Basse</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Kyrie (Christe)</th><td class="on">●</td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Laudamus te</th><td></td><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Domine Deus</th><td class="on">●</td><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Quoniam</th><td class="on">●</td><td class="on">●</td><td class="on">●</td><td></td></tr>
+          <tr><th scope="row">Et incarnatus est</th><td class="on">●</td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Benedictus</th><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="lexique" class="hide-salle">
+  <div class="wrap">
+    <p class="sec-label">Petit lexique</p>
+    <h2>Les mots du concert</h2>
+    <dl class="lex">
+      <div><dt>Ut</dt><dd>L'ancien nom de la note <em>do</em>, toujours employé pour nommer les tonalités. « En ut mineur » veut dire « en do mineur ».</dd></div>
+      <div><dt>KV 427</dt><dd>Le numéro de l'œuvre dans le catalogue de Ludwig von Köchel, qui a classé toutes les œuvres de Mozart au XIXᵉ siècle (KV pour <em>Köchel-Verzeichnis</em>).</dd></div>
+      <div><dt>Messe</dt><dd>En musique, la mise en musique des prières fixes de l'office catholique : Kyrie, Gloria, Credo, Sanctus-Benedictus, Agnus Dei.</dd></div>
+      <div><dt>Double chœur</dt><dd>Un chœur divisé en deux groupes complets (sopranos, altos, ténors, basses) qui se répondent ou chantent ensemble, soit huit parties.</dd></div>
+      <div><dt>Fugue</dt><dd>Une pièce où chaque voix entre à son tour avec le même thème, avant que tous les fils ne s'entremêlent.</dd></div>
+      <div><dt>Air</dt><dd>Un morceau pour voix soliste et orchestre, hérité de l'opéra.</dd></div>
+      <div><dt>Vocalise</dt><dd>Une longue suite de notes rapides chantées sur une seule syllabe.</dd></div>
+      <div><dt>Cadence</dt><dd>Un passage libre où l'orchestre se tait et laisse les solistes briller seuls.</dd></div>
+      <div><dt>Rythme pointé</dt><dd>Une alternance de notes longues et brèves (ta-da, ta-da) qui donne un caractère solennel et majestueux.</dd></div>
+      <div><dt>Tutti</dt><dd>« Tous » en italien : le moment où tout le monde joue ou chante ensemble.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="salle" class="hide-salle">
+  <div class="wrap">
+    <p class="sec-label">En salle</p>
+    <h2>Pour profiter pleinement du concert</h2>
+    <ul class="plain">
+      <li>Mettez votre téléphone en silencieux. Si vous suivez ce guide pendant le concert, activez le <strong>Mode salle</strong> et baissez la luminosité au minimum.</li>
+      <li>Applaudissez après la symphonie de Bizet, puis une seule fois à la fin de la messe, et non entre ses mouvements.</li>
+      <li>Les silences font partie de la musique : quand le chef garde les bras levés à la fin d'un morceau, l'œuvre n'est pas encore tout à fait terminée.</li>
+      <li>Gardez de la voix pour le bis !</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="end">
+  <div class="wrap">Guide du spectateur · Grande messe en ut mineur · Chœur et orchestre de l'Académie du Palais royal, Jean-Philippe Sarcos, direction · Traductions libres du texte latin.</div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('salle-toggle');
+  var root = document.documentElement;
+  var lock = null;
+  function set(on) {
+    if (on) root.setAttribute('data-salle', ''); else root.removeAttribute('data-salle');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? 'Quitter le mode salle' : 'Mode salle';
+    try { localStorage.setItem('salle', on ? '1' : '0'); } catch (e) {}
+    if (on && navigator.wakeLock) {
+      navigator.wakeLock.request('screen').then(function (l) { lock = l; }).catch(function () {});
+    } else if (!on && lock) { lock.release().catch(function () {}); lock = null; }
+  }
+  var saved = false;
+  try { saved = localStorage.getItem('salle') === '1'; } catch (e) {}
+  if (saved) set(true);
+  btn.addEventListener('click', function () { set(!root.hasAttribute('data-salle')); });
+})();
+</script>
+
+</body>
+</html>
