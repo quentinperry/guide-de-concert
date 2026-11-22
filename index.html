@@ -152,6 +152,14 @@ blockquote {
 }
 blockquote footer { font-style: normal; font-family: var(--font-ui); font-size: .88rem; color: var(--muted); margin-top: .4rem; }
 
+/* Dates */
+.dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
+.dates li { display: grid; gap: .15rem; align-content: start; padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
+.dates time { font-family: var(--font-ui); font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-variant-numeric: tabular-nums; }
+.dates .place { font-size: 1.1rem; font-weight: 600; }
+.dates .addr, .dates .pmr { font-family: var(--font-ui); font-size: .9rem; color: var(--muted); }
+.dates .pmr::before { content: "♿ "; }
+
 /* Influences */
 .infl { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
 .infl div { background: var(--surface); padding: 1rem 1.1rem; display: grid; gap: .35rem; align-content: start; min-width: 0; }
@@ -268,11 +276,19 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
   <div class="wrap">
     <p class="sec-label">Le programme</p>
     <h2>Trois œuvres, trois siècles de chant</h2>
+    <p class="meta">Environ 1 h 45, sans entracte. Jean-Philippe Sarcos ouvre la soirée en présentant les œuvres.</p>
     <ol class="prog">
       <li><span class="n">I</span><span class="t">Bizet, Symphonie « Roma »</span><span class="d">1869 · Premier mouvement : « Une chasse dans la forêt d'Ostie » · orchestre seul</span></li>
-      <li><span class="n">II</span><span class="t">Mozart, Grande messe en ut mineur, KV 427</span><span class="d">1783 · Chœur, quatre solistes et orchestre · environ 55 minutes</span></li>
+      <li><span class="n">II</span><span class="t">Mozart, Grande messe en ut mineur, KV 427</span><span class="d">1783 · Chœur, quatre solistes et orchestre · version Landon / Nebois</span></li>
       <li><span class="n">III</span><span class="t">Rameau, La Nuit</span><span class="d">En bis · chœur participatif : c'est vous qui chantez</span></li>
     </ol>
+    <h3>Dates et lieux</h3>
+    <ul class="dates">
+      <li><time datetime="2026-12-10T21:00">Jeu. 10 décembre · 21 h</time><span class="place">Église Saint-François-de-Sales</span><span class="addr">15-17, rue Ampère, 75017 Paris</span><span class="pmr">Accès PMR : rampe sur la gauche</span></li>
+      <li><time datetime="2026-12-13T15:00">Dim. 13 décembre · 15 h</time><span class="place">Église Saint-Honoré-d'Eylau</span><span class="addr">64 bis, avenue Raymond-Poincaré, 75116 Paris</span><span class="pmr">Accès PMR : rampe sur la gauche</span></li>
+      <li><time datetime="2026-12-16T21:00">Mer. 16 décembre · 21 h</time><span class="place">Église Saint-Sulpice</span><span class="addr">2, rue Palatine, 75006 Paris</span><span class="pmr">Accès PMR : rampe</span></li>
+      <li><time datetime="2026-12-18T21:00">Ven. 18 décembre · 21 h</time><span class="place">Église de la Sainte-Trinité</span><span class="addr">Place d'Estienne-d'Orves, 75009 Paris</span><span class="pmr">Accès PMR : rampe au 3, rue de Cheverus</span></li>
+    </ul>
     <div class="note"><strong>Avant d'entrer :</strong> lisez la page « Mozart » et survolez le guide d'écoute. Pendant le concert, touchez <strong>Mode salle</strong> en haut de l'écran : la page passe en très faible luminosité pour suivre le texte latin sans gêner vos voisins.</div>
   </div>
 </section>
@@ -304,7 +320,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
 
     <h3>Une œuvre inachevée</h3>
     <p>Mozart n'a jamais terminé cette messe, et personne ne sait vraiment pourquoi. Le Kyrie et le Gloria sont complets. Le Credo s'arrête après l'« Et incarnatus est », avec une orchestration en partie esquissée seulement. Le Sanctus et le Benedictus nous sont parvenus avec des parties manquantes, qu'il a fallu reconstituer. L'Agnus Dei n'a jamais été écrit.</p>
-    <p>Mozart ne l'a pas oubliée pour autant : en 1785, il en recycle une grande partie dans une cantate italienne, <em>Davide penitente</em>. Aujourd'hui, plusieurs musicologues ont proposé des reconstitutions ; ce que vous entendrez dépend de la version choisie par le chef.</p>
+    <p>Mozart ne l'a pas oubliée pour autant : en 1785, il en recycle une grande partie dans une cantate italienne, <em>Davide penitente</em>. Pour combler les lacunes de la partition, plusieurs musicologues ont proposé des reconstitutions. Ce soir, vous entendrez la version Landon / Nebois.</p>
 
     <h3>Tout ce que Mozart savait faire</h3>
     <p>À Vienne, le baron van Swieten organise chaque dimanche des séances où Mozart découvre les fugues de Bach et les oratorios de Haendel. Il en sort bouleversé, et cette messe en porte la trace. Il y réunit quatre traditions, et chacune a ses moments phares :</p>
@@ -337,7 +353,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <article class="mvt">
       <header>
         <h3>Kyrie</h3>
-        <div class="tags"><span class="tag key">ut mineur</span><span class="tag">Andante moderato</span><span class="tag voices">Chœur · Soprano I</span></div>
+        <div class="tags"><span class="tag key">ut mineur</span><span class="tag">Andante moderato</span><span class="tag voices">Chœur · Soprano</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un début sombre et grave, chargé de supplication. Au centre, sur « Christe eleison », la soprano s'élève seule au-dessus du chœur, comme une lumière dans l'obscurité. Puis le chœur revient avec la gravité du début.</p>
       <details class="text"><summary>Texte et traduction</summary>
@@ -367,7 +383,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <article class="mvt">
       <header>
         <h3>Laudamus te</h3>
-        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Allegro aperto</span><span class="tag voices">Soprano II</span></div>
+        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Allegro aperto</span><span class="tag voices">Soprano</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un véritable air d'opéra italien, brillant et joyeux. La soprano enchaîne vocalises et grands sauts, presque comme un instrument.</p>
       <details class="text"><summary>Texte et traduction</summary>
@@ -394,7 +410,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <article class="mvt">
       <header>
         <h3>Domine Deus</h3>
-        <div class="tags"><span class="tag key">ré mineur</span><span class="tag">Allegro moderato</span><span class="tag voices">Sopranos I et II</span></div>
+        <div class="tags"><span class="tag key">ré mineur</span><span class="tag">Allegro moderato</span><span class="tag voices">Deux sopranos</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Les deux sopranos se poursuivent, s'imitent et s'entrelacent. Fermez les yeux et suivez l'une des deux voix : l'autre lui répond sans cesse.</p>
       <details class="text"><summary>Texte et traduction</summary>
@@ -425,7 +441,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <article class="mvt">
       <header>
         <h3>Quoniam</h3>
-        <div class="tags"><span class="tag key">mi mineur</span><span class="tag">Allegro</span><span class="tag voices">Sopranos I et II · Ténor</span></div>
+        <div class="tags"><span class="tag key">mi mineur</span><span class="tag">Allegro</span><span class="tag voices">Deux sopranos · Ténor</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un trio vif et serré, presque une scène d'ensemble d'opéra. Le ténor fait ici sa première apparition en soliste.</p>
       <details class="text"><summary>Texte et traduction</summary>
@@ -474,7 +490,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <article class="mvt">
       <header>
         <h3>Et incarnatus est</h3>
-        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Andante · 6/8</span><span class="tag voices">Soprano I · flûte, hautbois, basson</span></div>
+        <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Andante · 6/8</span><span class="tag voices">Soprano · flûte, hautbois, basson</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Le moment le plus célèbre de la messe, et peut-être le plus tendre. Sur un balancement de berceuse, la soprano chante la naissance du Christ avec trois instruments à vent solistes. Vers la fin, l'orchestre se tait : la voix, la flûte, le hautbois et le basson improvisent ensemble une longue cadence, suspendue dans le temps.</p>
       <details class="text"><summary>Texte et traduction</summary>
@@ -506,7 +522,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
         <h3>Benedictus · Osanna</h3>
         <div class="tags"><span class="tag key">la mineur</span><span class="tag">Allegro comodo</span><span class="tag voices">Quatuor de solistes · double chœur</span></div>
       </header>
-      <p class="listen"><b>À écouter</b>Les quatre solistes chantent enfin ensemble. C'est la seule intervention de la basse dans toute la messe ! Puis le double chœur reprend l'Osanna et conclut l'œuvre dans la joie.</p>
+      <p class="listen"><b>À écouter</b>Les quatre solistes chantent enfin ensemble. Dans la partition de Mozart, c'est la seule intervention de la basse soliste de toute la messe ! Puis le double chœur reprend l'Osanna et conclut l'œuvre dans la joie.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Benedictus qui venit in nomine Domini.</p><p class="fr">Béni soit celui qui vient au nom du Seigneur.</p>
@@ -514,7 +530,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
         </div>
       </details>
     </article>
-    <p class="meta">Les tonalités et les tempos sont ceux de la partition de Mozart. Selon la reconstitution retenue, l'enchaînement du Credo et du Sanctus peut légèrement varier.</p>
+    <p class="meta">Les tonalités, les tempos et la répartition des voix sont ceux de la partition de Mozart. La version jouée ce soir, celle de Landon et Nebois, peut s'en écarter sur certains détails.</p>
   </div>
 </section>
 
@@ -525,14 +541,15 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <p class="meta">Jean-Philippe Rameau (1683-1764) · La Nuit · arrangement de J. Noyon pour chœur à 4 voix mixtes</p>
     <p class="hide-salle">Vous avez peut-être cette mélodie en tête sans le savoir : c'est le chant que Clément Mathieu fait répéter à ses élèves dans le film <em>Les Choristes</em> (2004). À l'origine, la musique vient d'un chœur d'<em>Hippolyte et Aricie</em>, le premier opéra de Rameau, créé en 1733. J. Noyon l'a arrangée bien plus tard pour chœur à quatre voix, sur des paroles françaises.</p>
     <p class="hide-salle">Clin d'œil de fin de soirée : <em>La Nuit</em> est en mi bémol majeur, avec la même armure à trois bémols que l'ut mineur de la messe de Mozart.</p>
-    <p>Ce soir, Jean-Philippe Sarcos devient votre chef de chœur. Alors, serez-vous plutôt Morhange, Pépinot… ou pupitre ?</p>
+    <p>Ce soir, Jean-Philippe Sarcos devient votre chef de chœur, avec le chœur et l'orchestre de l'Académie à vos côtés. Alors, serez-vous plutôt Morhange, Pépinot… ou pupitre ?</p>
     <div class="note">
       <strong>Pour bien chanter avec nous</strong>
       <ul class="plain">
-        <li>Ouvrez la <a href="rameau-la-nuit-partition.pdf" target="_blank" rel="noopener">partition de <em>La Nuit</em> (PDF, 3 pages)</a> et repérez votre pupitre : soprano, alto, ténor ou basse.</li>
+        <li>Écoutez <a href="https://youtu.be/Vel-9_wA_WQ" target="_blank" rel="noopener">l'enregistrement</a> deux ou trois fois avant de venir.</li>
+        <li>Ouvrez la <a href="rameau-la-nuit-partition.pdf" target="_blank" rel="noopener">partition de <em>La Nuit</em> (PDF, 3 pages)</a>. Tout le public chante la même chose : la mélodie principale, sur la ligne du haut marquée « Soprano ». Le chœur de l'Académie se charge des autres voix.</li>
         <li>Pas besoin de lire la musique : la mélodie est simple et se retient vite.</li>
         <li>Là où la partition indique <strong>B.F.</strong>, chantez <em>bouche fermée</em>, c'est-à-dire en fredonnant, lèvres closes.</li>
-        <li>Au début de la deuxième strophe, une soprano chante seule : les autres pupitres l'accompagnent tout doucement, bouche fermée.</li>
+        <li>Au début de la deuxième strophe, la partition indique « Solo » : ce soir, il n'y a pas de soliste, tout le monde fredonne bouche fermée.</li>
         <li>Suivez les gestes du chef : il vous indiquera quand respirer, quand commencer et quand chanter plus doucement.</li>
         <li>C'est un chant de nuit : chantez doux, avec une voix posée, plutôt que fort.</li>
       </ul>
@@ -549,24 +566,25 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
       <li><span class="name">Charlotte Mercier</span><span class="role">Soprano II</span></li>
       <li><span class="name">Yann Salaün</span><span class="role">Ténor</span></li>
       <li><span class="name">Angelo Heck</span><span class="role">Basse</span></li>
-      <li><span class="name">Académie du Palais royal</span><span class="role">Chœur et orchestre</span></li>
+      <li><span class="name">Académie du Palais royal</span><span class="role">Chœur et orchestre · <a href="https://academie-de-musique.com" target="_blank" rel="noopener">academie-de-musique.com</a></span></li>
       <li><span class="name">Jean-Philippe Sarcos</span><span class="role">Direction</span></li>
     </ul>
     <h3>Qui chante quoi ?</h3>
-    <p class="hide-salle">Mozart répartit les solos de façon très inégale. Les deux sopranos portent l'essentiel des airs. La basse attend patiemment le Benedictus.</p>
+    <p class="hide-salle">Mozart répartit les solos de façon très inégale. Les sopranos portent l'essentiel des airs, et la basse attend patiemment le Benedictus. Le tableau suit la partition de Mozart ; ce soir, les solistes peuvent se partager certains airs autrement.</p>
     <div class="table-scroll">
       <table>
-        <thead><tr><th scope="col">Mouvement</th><th scope="col">Sop. I</th><th scope="col">Sop. II</th><th scope="col">Ténor</th><th scope="col">Basse</th></tr></thead>
+        <thead><tr><th scope="col">Mouvement</th><th scope="col">Sopranos</th><th scope="col">Ténor</th><th scope="col">Basse</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Kyrie (Christe)</th><td class="on">●</td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">Laudamus te</th><td></td><td class="on">●</td><td></td><td></td></tr>
-          <tr><th scope="row">Domine Deus</th><td class="on">●</td><td class="on">●</td><td></td><td></td></tr>
-          <tr><th scope="row">Quoniam</th><td class="on">●</td><td class="on">●</td><td class="on">●</td><td></td></tr>
-          <tr><th scope="row">Et incarnatus est</th><td class="on">●</td><td></td><td></td><td></td></tr>
-          <tr><th scope="row">Benedictus</th><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td></tr>
+          <tr><th scope="row">Kyrie (Christe)</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Laudamus te</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Domine Deus</th><td class="on">●●</td><td></td><td></td></tr>
+          <tr><th scope="row">Quoniam</th><td class="on">●●</td><td class="on">●</td><td></td></tr>
+          <tr><th scope="row">Et incarnatus est</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Benedictus</th><td class="on">●●</td><td class="on">●</td><td class="on">●</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="meta">● une voix · ●● les deux sopranos ensemble</p>
   </div>
 </section>
 
@@ -594,6 +612,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
     <p class="sec-label">En salle</p>
     <h2>Pour profiter pleinement du concert</h2>
     <ul class="plain">
+      <li>Le concert dure environ 1 h 45, sans entracte. Il commence par une présentation des œuvres par Jean-Philippe Sarcos.</li>
       <li>Mettez votre téléphone en silencieux. Si vous suivez ce guide pendant le concert, activez le <strong>Mode salle</strong> et baissez la luminosité au minimum.</li>
       <li>Applaudissez après la symphonie de Bizet, puis une seule fois à la fin de la messe, et non entre ses mouvements.</li>
       <li>Les silences font partie de la musique : quand le chef garde les bras levés à la fin d'un morceau, l'œuvre n'est pas encore tout à fait terminée.</li>
