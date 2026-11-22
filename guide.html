@@ -238,23 +238,50 @@ footer.end details[open] summary { margin-bottom: .75rem; }
 .colophon { font-family: var(--font-ui); font-size: .78rem; color: var(--muted); line-height: 1.6; }
 
 :root[data-salle] .hide-salle { display: none; }
+[hidden] { display: none !important; }
+
+/* Billetterie */
+.ticket {
+  display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: .2rem .6rem;
+  margin-top: .4rem; padding: .6rem 1.1rem; border: 1px solid var(--gold); border-radius: 999px;
+  font-family: var(--font-ui); font-size: .82rem; font-weight: 600; color: var(--ink); text-decoration: none;
+  max-width: 100%; overflow-wrap: anywhere;
+}
+.ticket span { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.ticket:hover { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+
+/* Langue */
+.lang-btn {
+  flex: none; font-family: var(--font-ui); font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  padding: .45rem .6rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--rule); background: transparent; color: var(--muted);
+}
+.lang-btn:hover { color: var(--ink); border-color: var(--muted); }
 </style>
 
 <header class="hero">
   <div class="hero-photo">
     <img src="affiche-chef.jpg" width="745" height="505" alt="Jean-Philippe Sarcos dirigeant le chœur et l'orchestre de l'Académie du Palais royal dans une église illuminée pour Noël">
   </div>
-  <div class="hero-text wrap">
+  <div class="hero-text wrap" data-lang="fr">
     <h1>MOZART</h1>
     <p class="sub">Grande messe en ut mineur</p>
     <span class="gold-rule" aria-hidden="true"></span>
     <p class="with">Bizet, <i>Symphonie « Roma »</i> · Rameau, <i>La Nuit</i><strong>Jean-Philippe Sarcos, direction</strong></p>
+    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener"><span>Billetterie</span>my.weezevent.com/grande-messe-en-ut</a>
+  </div>
+  <div class="hero-text wrap" data-lang="en" lang="en" hidden>
+    <h1>MOZART</h1>
+    <p class="sub">Great Mass in C minor</p>
+    <span class="gold-rule" aria-hidden="true"></span>
+    <p class="with">Bizet, <i>“Roma” Symphony</i> · Rameau, <i>La Nuit</i><strong>Jean-Philippe Sarcos, conductor</strong></p>
+    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener"><span>Tickets</span>my.weezevent.com/grande-messe-en-ut</a>
   </div>
 </header>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Sections du guide">
+    <nav aria-label="Sections du guide" data-lang="fr">
       <ul>
         <li><a href="#programme">Programme</a></li>
         <li><a href="#bizet">Bizet</a></li>
@@ -265,11 +292,23 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <li><a href="#lexique">Lexique</a></li>
       </ul>
     </nav>
+    <nav aria-label="Guide sections" data-lang="en" lang="en" hidden>
+      <ul>
+        <li><a href="#programme-en">Programme</a></li>
+        <li><a href="#bizet-en">Bizet</a></li>
+        <li><a href="#mozart-en">Mozart</a></li>
+        <li><a href="#ecoute-en">Listening</a></li>
+        <li><a href="#rameau-en">Sing!</a></li>
+        <li><a href="#interpretes-en">Performers</a></li>
+        <li><a href="#lexique-en">Glossary</a></li>
+      </ul>
+    </nav>
+    <button class="lang-btn" id="lang-toggle" type="button" aria-label="Read in English" lang="en">EN</button>
     <button class="salle-btn" id="salle-toggle" type="button" aria-pressed="false" title="Écran très sombre pour lire pendant le concert">Mode salle</button>
   </div>
 </div>
 
-<main>
+<main data-lang="fr">
 
 <section id="programme" class="hide-salle" style="--c: var(--pink)">
   <div class="wrap">
@@ -625,7 +664,363 @@ footer.end details[open] summary { margin-bottom: .75rem; }
 
 </main>
 
-<footer class="end hide-salle">
+<main data-lang="en" lang="en" hidden>
+
+<section id="programme-en" class="hide-salle" style="--c: var(--pink)">
+  <div class="wrap">
+    <p class="sec-label">Tonight</p>
+    <h2>Three works, three centuries of song</h2>
+    <p class="meta">About 1 h 45, no interval. Jean-Philippe Sarcos opens the evening by introducing the works.</p>
+    <ol class="prog">
+      <li><span class="n">I</span><span class="t">Bizet, “Roma” Symphony</span><span class="d">1869 · First movement: “A Hunt in the Forest of Ostia” · orchestra only</span></li>
+      <li><span class="n">II</span><span class="t">Mozart, Great Mass in C minor, K. 427</span><span class="d">1783 · Choir, four soloists and orchestra · Landon / Nebois version</span></li>
+      <li><span class="n">III</span><span class="t">Rameau, La Nuit</span><span class="d">Encore · sing-along: this one is yours</span></li>
+    </ol>
+    <div class="note"><strong>During the concert,</strong> tap <strong>Concert mode</strong> at the top of the screen. The page dims right down so you can follow the Latin text without disturbing your neighbours. Please also switch your phone to silent.</div>
+  </div>
+</section>
+
+<section id="bizet-en" class="hide-salle" style="--c: var(--red)">
+  <div class="wrap">
+    <p class="sec-label">I · Bizet</p>
+    <h2>A hunt in the forest of Ostia</h2>
+    <p class="meta">Georges Bizet (1838-1875) · Symphony in C major “Roma”, first movement</p>
+    <p>Long before <em>Carmen</em>, Bizet won the Prix de Rome at 19, in 1857. The prize sent him to the Villa Medici, and Italy left a lasting mark on him. The “Roma” Symphony grew out of those memories. He kept reworking it for about ten years without ever being fully satisfied.</p>
+    <p>The first movement paints a landscape: the pine forest along the sea near Ostia, the ancient port of Rome. It opens calmly, with the horns in the foreground, then the hunt sets off and the orchestra comes alive.</p>
+    <p class="listen"><b>Listen for</b>The contrast between the peaceful introduction and the energy of the chase. The horns, the hunting instrument above all others, run through the whole movement.</p>
+    <p class="listen"><b>Watch out for</b>The switch from calm to agitation: the tempo picks up, the brass sound like hunting calls, and the orchestra breaks into a gallop. Close your eyes and let the picture form: the pines, the sea, the chase.</p>
+    <div class="note"><strong>Why Bizet before Mozart?</strong> Both works are in C: C major for Bizet, C minor for Mozart. We move from the light of a Roman landscape to the gravity of a Mass.</div>
+  </div>
+</section>
+
+<section id="mozart-en" class="hide-salle" style="--c: var(--orange)">
+  <div class="wrap">
+    <p class="sec-label">II · Mozart</p>
+    <h2>A Mass for Constanze</h2>
+    <p class="meta">Wolfgang Amadeus Mozart (1756-1791) · Mass in C minor, K. 427 · Vienna, 1782-1783</p>
+    <p>In 1781, Mozart walked out on his employer, the Prince-Archbishop of Salzburg, and settled in Vienna as a freelance musician. The following summer he married Constanze Weber, despite the misgivings of his father Leopold.</p>
+    <p>This is when he began a large-scale Mass that nobody had commissioned. He explained why in a letter to his father in January 1783: he had promised in his heart to write a Mass if he managed to bring Constanze to Salzburg as his wife. The half-finished score, he wrote, was proof that he meant it.</p>
+    <blockquote>
+      The score of half of a Mass, which is still lying here waiting to be finished, is the best proof that I really made the promise.
+      <footer>Mozart to his father, 4 January 1783 (free translation)</footer>
+    </blockquote>
+    <p>The Mass was first performed in Salzburg in October 1783, at St Peter's Abbey. Constanze sang one of the soprano parts.</p>
+
+    <h3>An unfinished work</h3>
+    <p>Mozart never completed this Mass, and nobody really knows why. The Kyrie and Gloria are complete. The Credo stops after the “Et incarnatus est”, with the orchestration only partly sketched. The Sanctus and Benedictus have come down to us with missing parts that had to be reconstructed. The Agnus Dei was never written.</p>
+    <p>Mozart did not forget it, though: in 1785 he reused much of it in an Italian cantata, <em>Davide penitente</em>. Several scholars have proposed reconstructions to fill the gaps in the score. Tonight you are hearing the Landon / Nebois version.</p>
+
+    <h3>Everything Mozart knew</h3>
+    <p>In Vienna, Baron van Swieten held Sunday gatherings where Mozart discovered the fugues of Bach and the oratorios of Handel. He was deeply struck, and this Mass bears the mark. It brings together four traditions, each with its high points:</p>
+    <div class="infl">
+      <div><h3>Bach and Handel</h3><p>Baroque grandeur: tight fugues, solemn dotted rhythms, massive choruses.</p><span class="where">Kyrie · Qui tollis · Cum Sancto Spiritu</span></div>
+      <div><h3>Italian virtuosity</h3><p>Arias for agile voices, full of runs, as in the Neapolitan opera.</p><span class="where">Laudamus te · Et incarnatus est</span></div>
+      <div><h3>Venetian double choirs</h3><p>Two choirs answering each other across space, in the manner of St Mark's in Venice.</p><span class="where">Qui tollis · Sanctus · Osanna</span></div>
+      <div><h3>The charm and drama of opera</h3><p>Duets and trios where the voices converse like characters on stage.</p><span class="where">Domine Deus · Quoniam · Benedictus</span></div>
+    </div>
+
+    <h3>Milestones</h3>
+    <ol class="timeline">
+      <li><time>1781</time><span>Mozart leaves Salzburg and settles in Vienna.</span></li>
+      <li><time>1782</time><span>He discovers Bach and Handel at van Swieten's. He marries Constanze Weber in August.</span></li>
+      <li><time>1783</time><span>The letter about his vow in January. First performance of the unfinished Mass in Salzburg in October.</span></li>
+      <li><time>1785</time><span>The music of the Mass becomes the cantata <em>Davide penitente</em>.</span></li>
+      <li><time>1791</time><span>Mozart dies, leaving another unfinished sacred work: the Requiem.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="ecoute-en" style="--c: var(--amber)">
+  <div class="wrap">
+    <p class="sec-label">Listening guide</p>
+    <h2>The Mass, movement by movement</h2>
+    <p class="hide-salle">A Mass sets to music the five prayers of the Catholic service that stay the same every day: Kyrie, Gloria, Credo, Sanctus and Agnus Dei. Mozart divides each into several numbers. Tap “Text and translation” to follow the words.</p>
+    <h3 class="hide-salle">How to listen</h3>
+    <ul class="tips hide-salle">
+      <li><strong>Read, then look up</strong><span>Skim the text of a movement during the short pause before it, then put your phone down. A few words are enough to know what is being sung.</span></li>
+      <li><strong>From shadow to light</strong><span>Each card gives the key. Minor darkens, major brightens. The Mass starts in the grave C minor of the Kyrie and ends in the blaze of the Osanna, in C major.</span></li>
+      <li><strong>Follow one voice</strong><span>In a fugue, pick a section, the basses for example, and stay with it. You will hear the theme pass from voice to voice.</span></li>
+      <li><strong>Watch the stage</strong><span>In the double choruses, look for which group is singing. In the arias, watch which instruments converse with the soloist. The trombones double the choir's voices, as was the custom in Salzburg's churches.</span></li>
+      <li><strong>Listen to the church</strong><span>Let the sound ring under the vaults after the final chords. That silence is part of the work.</span></li>
+      <li><strong>Save your applause</strong><span>The Mass is a single whole: applaud only at the very end, after the last Osanna.</span></li>
+    </ul>
+
+    <p class="part-title">Kyrie</p>
+    <article class="mvt">
+      <header>
+        <h3>Kyrie</h3>
+        <div class="tags"><span class="tag key">C minor</span><span class="tag">Andante moderato</span><span class="tag voices">Choir · Soprano</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The orchestra sets a grave mood, then the choir enters with its pleas. At the centre, on “Christe eleison”, the music turns to major and the soprano rises alone above the choir, like a light in the dark. Mozart is thought to have written this part for Constanze's voice.</p>
+      <p class="listen"><b>Watch out for</b>The soprano's wide leaps, dipping low and then soaring straight up. Then the return of the choir and of C minor, like a shadow coming back.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Kyrie eleison.</p><p class="fr">Lord, have mercy.</p>
+          <p class="la">Christe eleison.</p><p class="fr">Christ, have mercy.</p>
+          <p class="la">Kyrie eleison.</p><p class="fr">Lord, have mercy.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Gloria</p>
+    <article class="mvt">
+      <header>
+        <h3>Gloria in excelsis</h3>
+        <div class="tags"><span class="tag key">C major</span><span class="tag">Allegro vivace</span><span class="tag voices">Choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>After the Kyrie, light bursts out: trumpets, timpani and choir. Mozart pays tribute to Handel's great choruses.</p>
+      <p class="listen"><b>Watch out for</b>The change of mood on “et in terra pax”: after the glory of heaven, peace on earth is sung more calmly, without fanfare.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Gloria in excelsis Deo,</p><p class="fr">Glory to God in the highest,</p>
+          <p class="la">et in terra pax hominibus bonae voluntatis.</p><p class="fr">and on earth peace to people of good will.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Laudamus te</h3>
+        <div class="tags"><span class="tag key">F major</span><span class="tag">Allegro aperto</span><span class="tag voices">Soprano</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>A true Italian opera aria, brilliant and joyful. The soprano strings together runs and wide leaps, almost like an instrument.</p>
+      <p class="listen"><b>Watch out for</b>The trills and long runs on a single syllable. Notice where the singer breathes to relaunch the phrase, and how the orchestra answers her, as in a concerto.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Laudamus te, benedicimus te,</p><p class="fr">We praise you, we bless you,</p>
+          <p class="la">adoramus te, glorificamus te.</p><p class="fr">we adore you, we glorify you.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Gratias</h3>
+        <div class="tags"><span class="tag key">A minor</span><span class="tag">Adagio</span><span class="tag voices">Five-part choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>A very short, inward moment with tense harmonies. The choir divides into five parts, giving a denser texture.</p>
+      <p class="listen"><b>Watch out for</b>The dissonances: notes that rub against each other and then resolve, like knots coming undone. Barely a minute long, yet one of the most intense pages of the Mass.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Gratias agimus tibi propter magnam gloriam tuam.</p><p class="fr">We give you thanks for your great glory.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Domine Deus</h3>
+        <div class="tags"><span class="tag key">D minor</span><span class="tag">Allegro moderato</span><span class="tag voices">Two sopranos</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The two sopranos chase, imitate and intertwine with each other. Close your eyes and follow one of the voices: the other keeps answering it.</p>
+      <p class="listen"><b>Watch out for</b>The moments when the two voices come together in harmony, before parting again. They share the same range, so it becomes hard to tell which one is leading.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Domine Deus, Rex caelestis,</p><p class="fr">Lord God, heavenly King,</p>
+          <p class="la">Deus Pater omnipotens.</p><p class="fr">God the Father almighty.</p>
+          <p class="la">Domine Fili unigenite, Jesu Christe.</p><p class="fr">Lord, only-begotten Son, Jesus Christ.</p>
+          <p class="la">Domine Deus, Agnus Dei, Filius Patris.</p><p class="fr">Lord God, Lamb of God, Son of the Father.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Qui tollis</h3>
+        <div class="tags"><span class="tag key">G minor</span><span class="tag">Largo</span><span class="tag voices">Eight-part double choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The dramatic summit of the Mass. Two choirs answer each other and unite, carried by relentless dotted rhythms in the orchestra, like a crushing procession. Notice the obsessive repetition of “miserere nobis”.</p>
+      <p class="listen"><b>Watch out for</b>The bass line stepping down by semitones: a traditional Baroque figure of lament. Then the moments when the two choirs, after trading phrases, merge into a single block of eight voices.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Qui tollis peccata mundi, miserere nobis.</p><p class="fr">You who take away the sins of the world, have mercy on us.</p>
+          <p class="la">Qui tollis peccata mundi, suscipe deprecationem nostram.</p><p class="fr">You who take away the sins of the world, receive our prayer.</p>
+          <p class="la">Qui sedes ad dexteram Patris, miserere nobis.</p><p class="fr">You who sit at the right hand of the Father, have mercy on us.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Quoniam</h3>
+        <div class="tags"><span class="tag key">E minor</span><span class="tag">Allegro</span><span class="tag voices">Two sopranos · Tenor</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>A lively, closely knit trio, almost an opera ensemble scene. The tenor makes his first solo appearance here.</p>
+      <p class="listen"><b>Watch out for</b>The imitative entries: each voice takes up the phrase of the one before, like a conversation picking up speed.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Quoniam tu solus Sanctus,</p><p class="fr">For you alone are holy,</p>
+          <p class="la">tu solus Dominus,</p><p class="fr">you alone are the Lord,</p>
+          <p class="la">tu solus Altissimus.</p><p class="fr">you alone are the Most High.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Jesu Christe · Cum Sancto Spiritu</h3>
+        <div class="tags"><span class="tag key">C major</span><span class="tag">Adagio · Alla breve</span><span class="tag voices">Choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>A few solemn bars, then a great fugue: the voices enter one after another on the same theme, then pile up. This is Mozart's most direct tribute to Bach. The Gloria ends in splendour on “Amen”.</p>
+      <p class="listen"><b>Watch out for</b>The fugue theme, first sung by a single voice. Try to recognise it at each new entry, even when it hides among the others. Towards the end the entries come closer and overlap: the tension builds up to the “Amen”.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Jesu Christe,</p><p class="fr">Jesus Christ,</p>
+          <p class="la">cum Sancto Spiritu in gloria Dei Patris. Amen.</p><p class="fr">with the Holy Spirit, in the glory of God the Father. Amen.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Credo</p>
+    <article class="mvt">
+      <header>
+        <h3>Credo in unum Deum</h3>
+        <div class="tags"><span class="tag key">C major</span><span class="tag">Allegro maestoso</span><span class="tag voices">Five-part choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>An energetic, fast-moving statement of faith. The choir advances as one block, driven by the momentum of the orchestra.</p>
+      <p class="listen"><b>Watch out for</b>How fast the text goes by: the choir proclaims rather than meditates. The contrast sets up the suspended moment that follows.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Credo in unum Deum, Patrem omnipotentem,</p><p class="fr">I believe in one God, the Father almighty,</p>
+          <p class="la">factorem caeli et terrae, visibilium omnium et invisibilium.</p><p class="fr">maker of heaven and earth, of all things visible and invisible.</p>
+          <p class="la">Et in unum Dominum Jesum Christum, Filium Dei unigenitum,</p><p class="fr">And in one Lord Jesus Christ, the only-begotten Son of God,</p>
+          <p class="la">et ex Patre natum ante omnia saecula.</p><p class="fr">born of the Father before all ages.</p>
+          <p class="la">Deum de Deo, lumen de lumine, Deum verum de Deo vero,</p><p class="fr">God from God, light from light, true God from true God,</p>
+          <p class="la">genitum, non factum, consubstantialem Patri: per quem omnia facta sunt.</p><p class="fr">begotten, not made, of one substance with the Father; through him all things were made.</p>
+          <p class="la">Qui propter nos homines et propter nostram salutem descendit de caelis.</p><p class="fr">For us and for our salvation he came down from heaven.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Et incarnatus est</h3>
+        <div class="tags"><span class="tag key">F major</span><span class="tag">Andante · 6/8</span><span class="tag voices">Soprano · flute, oboe, bassoon</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The most famous moment of the Mass, and perhaps the most tender. Over a lullaby-like sway, the soprano sings of the birth of Christ with three solo wind instruments. Near the end the orchestra falls silent: voice, flute, oboe and bassoon intertwine in a long cadenza written out in full by Mozart, suspended in time.</p>
+      <p class="listen"><b>Watch out for</b>The conversation between the voice and the three winds: each takes up the other's melody, like four equal soloists. Hold your breath during the cadenza: it is the most intimate moment of the evening.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Et incarnatus est de Spiritu Sancto ex Maria Virgine,</p><p class="fr">And by the Holy Spirit he was incarnate of the Virgin Mary,</p>
+          <p class="la">et homo factus est.</p><p class="fr">and was made man.</p>
+        </div>
+      </details>
+    </article>
+
+    <p class="part-title">Sanctus</p>
+    <article class="mvt">
+      <header>
+        <h3>Sanctus · Osanna</h3>
+        <div class="tags"><span class="tag key">C major</span><span class="tag">Largo · Allegro comodo</span><span class="tag voices">Eight-part double choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The double choir returns, majestic, for the “Holy, holy, holy”. The Osanna is a jubilant fugue in which the two choirs toss the theme back and forth.</p>
+      <p class="listen"><b>Watch out for</b>The Osanna theme passing from one choir to the other. Under the vaults, the sound seems to come from several places at once, as in Venice.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth.</p><p class="fr">Holy, holy, holy Lord God of hosts.</p>
+          <p class="la">Pleni sunt caeli et terra gloria tua.</p><p class="fr">Heaven and earth are full of your glory.</p>
+          <p class="la">Osanna in excelsis.</p><p class="fr">Hosanna in the highest.</p>
+        </div>
+      </details>
+    </article>
+
+    <article class="mvt">
+      <header>
+        <h3>Benedictus · Osanna</h3>
+        <div class="tags"><span class="tag key">A minor</span><span class="tag">Allegro comodo</span><span class="tag voices">Solo quartet · double choir</span></div>
+      </header>
+      <p class="listen"><b>Listen for</b>The four soloists finally sing together. In Mozart's score, this is the bass soloist's only appearance in the whole Mass! Then the double choir takes up the Osanna again and ends the work in joy.</p>
+      <p class="listen"><b>Watch out for</b>The Benedictus is in A minor, more anxious than you might expect for a blessing. The return of the Osanna closes the Mass in C major, far from the shadow of the Kyrie: from darkness to light, the journey of the whole work. Now is the time to applaud.</p>
+      <details class="text"><summary>Text and translation</summary>
+        <div class="bi">
+          <p class="la">Benedictus qui venit in nomine Domini.</p><p class="fr">Blessed is he who comes in the name of the Lord.</p>
+          <p class="la">Osanna in excelsis.</p><p class="fr">Hosanna in the highest.</p>
+        </div>
+      </details>
+    </article>
+    <p class="meta hide-salle">Keys, tempos and the distribution of voices follow Mozart's score. Tonight's version, by Landon and Nebois, may differ in some details.</p>
+  </div>
+</section>
+
+<section id="rameau-en" style="--c: var(--pink)">
+  <div class="wrap">
+    <p class="sec-label">III · Encore · Rameau</p>
+    <h2>Your turn to sing!</h2>
+    <p class="meta">Jean-Philippe Rameau (1683-1764) · La Nuit · arranged by J. Noyon for four-part mixed choir</p>
+    <p class="hide-salle">You may know this tune without realising it: it is the song Clément Mathieu rehearses with his pupils in the film <em>Les Choristes</em> (<em>The Chorus</em>, 2004). The music comes from a chorus in <em>Hippolyte et Aricie</em>, Rameau's first opera, premiered in 1733. Much later J. Noyon arranged it for four-part choir, with new French words.</p>
+    <p>Jean-Philippe Sarcos becomes your choirmaster, with the Académie's choir and orchestra by your side. So, will you be Morhange, Pépinot… or the music stand?</p>
+    <div class="note">
+      <ul class="plain">
+        <li>Open the <a href="rameau-la-nuit-partition.pdf" target="_blank" rel="noopener">score of <em>La Nuit</em> (PDF, 3 pages)</a>. The whole audience sings the main tune, on the top line marked “Soprano”. The Académie's choir takes care of the other parts.</li>
+        <li>No need to read music: the tune is simple and easy to pick up.</li>
+        <li>Follow the conductor's gestures: he shows you when to breathe, when to start and when to sing more softly.</li>
+        <li>Where the score says <strong>B.F.</strong> (<em>bouche fermée</em>), hum with your lips closed.</li>
+        <li>At the start of the second verse the score says “Solo”: there is no soloist tonight, everyone hums with closed lips.</li>
+        <li>It is a song of the night: sing softly, with a calm voice, rather than loudly.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="interpretes-en" style="--c: var(--red)">
+  <div class="wrap">
+    <p class="sec-label">Performers</p>
+    <h2>On stage</h2>
+    <ul class="people">
+      <li><span class="name">Thaïs Raï-Westphal</span><span class="role">Soprano I · <a href="https://www.instagram.com/thaisraiwestphalsoprano" target="_blank" rel="noopener">Instagram</a></span></li>
+      <li><span class="name">Charlotte Mercier</span><span class="role">Soprano II · <a href="https://www.linkedin.com/in/charlotte-sarcos-9b444475" target="_blank" rel="noopener">LinkedIn</a></span></li>
+      <li><span class="name">Yann Salaün</span><span class="role">Tenor · <a href="https://www.instagram.com/yannsln" target="_blank" rel="noopener">Instagram</a></span></li>
+      <li><span class="name">Angelo Heck</span><span class="role">Bass · <a href="https://www.instagram.com/angelo.heck" target="_blank" rel="noopener">Instagram</a></span></li>
+      <li><span class="name">Académie du Palais royal</span><span class="role">Choir and orchestra · <a href="https://academie-de-musique.com" target="_blank" rel="noopener">Website</a></span></li>
+      <li><span class="name">Jean-Philippe Sarcos</span><span class="role">Conductor · <a href="https://www.instagram.com/maestrosarcos" target="_blank" rel="noopener">Instagram</a></span></li>
+    </ul>
+    <h3>Who sings what?</h3>
+    <p class="hide-salle">Mozart shares out the solos very unevenly. The sopranos carry most of the arias, and the bass waits patiently for the Benedictus. The table follows Mozart's score; tonight the soloists may divide some arias differently.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Movement</th><th scope="col">Sopranos</th><th scope="col">Tenor</th><th scope="col">Bass</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Kyrie (Christe)</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Laudamus te</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Domine Deus</th><td class="on">●●</td><td></td><td></td></tr>
+          <tr><th scope="row">Quoniam</th><td class="on">●●</td><td class="on">●</td><td></td></tr>
+          <tr><th scope="row">Et incarnatus est</th><td class="on">●</td><td></td><td></td></tr>
+          <tr><th scope="row">Benedictus</th><td class="on">●●</td><td class="on">●</td><td class="on">●</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">● one voice · ●● both sopranos together</p>
+  </div>
+</section>
+
+<section id="lexique-en" class="hide-salle" style="--c: var(--orange)">
+  <div class="wrap">
+    <p class="sec-label">Glossary</p>
+    <h2>Concert words</h2>
+    <dl class="lex">
+      <div><dt>Ut</dt><dd>The old French name for the note C, still used in French to name keys. “En ut mineur” means “in C minor”.</dd></div>
+      <div><dt>K. 427</dt><dd>The work's number in Ludwig von Köchel's catalogue, which listed all of Mozart's works in the 19th century (KV stands for <em>Köchel-Verzeichnis</em>).</dd></div>
+      <div><dt>Mass</dt><dd>In music, a setting of the fixed prayers of the Catholic service: Kyrie, Gloria, Credo, Sanctus-Benedictus, Agnus Dei.</dd></div>
+      <div><dt>Double choir</dt><dd>A choir split into two complete groups (sopranos, altos, tenors, basses) that answer each other or sing together, making eight parts.</dd></div>
+      <div><dt>Fugue</dt><dd>A piece in which each voice enters in turn with the same theme, before all the threads interweave.</dd></div>
+      <div><dt>Aria</dt><dd>A piece for solo voice and orchestra, inherited from opera.</dd></div>
+      <div><dt>Run (vocalise)</dt><dd>A long string of fast notes sung on a single syllable.</dd></div>
+      <div><dt>Cadenza</dt><dd>A free passage where the orchestra falls silent and the soloists shine on their own.</dd></div>
+      <div><dt>Dotted rhythm</dt><dd>An alternation of long and short notes (ta-da, ta-da) that gives a solemn, majestic character.</dd></div>
+      <div><dt>Tutti</dt><dd>Italian for “all”: the moment when everyone plays or sings together.</dd></div>
+    </dl>
+    <h3>When to applaud</h3>
+    <ul class="plain">
+      <li>After the Bizet symphony, then once only at the end of the Mass, not between its movements.</li>
+      <li>When the conductor keeps his arms raised at the end of a piece, the work is not quite over yet: the silence is part of the music.</li>
+      <li>Save your voice for the encore!</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="end hide-salle" data-lang="fr">
   <div class="wrap">
     <details>
       <summary>Dates et accès</summary>
@@ -640,30 +1035,81 @@ footer.end details[open] summary { margin-bottom: .75rem; }
       <summary>Pour aller plus loin</summary>
       <ul class="dates">
         <li><span class="place">Réécouter <em>La Nuit</em></span><a href="https://youtu.be/Vel-9_wA_WQ" target="_blank" rel="noopener">Enregistrement sur YouTube</a></li>
+        <li><span class="place">Billetterie</span><a href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener">my.weezevent.com/grande-messe-en-ut</a></li>
         <li><span class="place">L'Académie du Palais royal</span><a href="https://academie-de-musique.com" target="_blank" rel="noopener">academie-de-musique.com</a></li>
       </ul>
     </details>
     <p class="colophon">Guide du spectateur · Chœur et orchestre de l'Académie du Palais royal, Jean-Philippe Sarcos, direction · Traductions libres du texte latin.</p>
   </div>
 </footer>
+<footer class="end hide-salle" data-lang="en" lang="en" hidden>
+  <div class="wrap">
+    <details>
+      <summary>Dates and access</summary>
+      <ul class="dates">
+        <li><time datetime="2026-12-10T21:00">Thu 10 Dec · 9 pm</time><span class="place">Église Saint-François-de-Sales</span><span>15-17, rue Ampère, 75017 Paris · Step-free access: ramp on the left</span></li>
+        <li><time datetime="2026-12-13T15:00">Sun 13 Dec · 3 pm</time><span class="place">Église Saint-Honoré-d'Eylau</span><span>64 bis, avenue Raymond-Poincaré, 75116 Paris · Step-free access: ramp on the left</span></li>
+        <li><time datetime="2026-12-16T21:00">Wed 16 Dec · 9 pm</time><span class="place">Église Saint-Sulpice</span><span>2, rue Palatine, 75006 Paris · Step-free access: ramp</span></li>
+        <li><time datetime="2026-12-18T21:00">Fri 18 Dec · 9 pm</time><span class="place">Église de la Sainte-Trinité</span><span>Place d'Estienne-d'Orves, 75009 Paris · Step-free access: ramp at 3, rue de Cheverus</span></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Further</summary>
+      <ul class="dates">
+        <li><span class="place">Listen to <em>La Nuit</em> again</span><a href="https://youtu.be/Vel-9_wA_WQ" target="_blank" rel="noopener">Recording on YouTube</a></li>
+        <li><span class="place">Tickets</span><a href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener">my.weezevent.com/grande-messe-en-ut</a></li>
+        <li><span class="place">Académie du Palais royal</span><a href="https://academie-de-musique.com" target="_blank" rel="noopener">academie-de-musique.com</a></li>
+      </ul>
+    </details>
+    <p class="colophon">Audience guide · Choir and orchestra of the Académie du Palais royal, Jean-Philippe Sarcos, conductor · Free translations of the Latin text.</p>
+  </div>
+</footer>
+
 
 <script>
 (function () {
-  var btn = document.getElementById('salle-toggle');
   var root = document.documentElement;
+  var salleBtn = document.getElementById('salle-toggle');
+  var langBtn = document.getElementById('lang-toggle');
+  var lang = 'fr';
   var lock = null;
-  function set(on) {
+  var labels = {
+    fr: { on: 'Quitter', off: 'Mode salle', title: 'Écran très sombre pour lire pendant le concert' },
+    en: { on: 'Exit', off: 'Concert mode', title: 'Very dark screen for reading during the concert' }
+  };
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function paintSalle() {
+    var on = root.hasAttribute('data-salle');
+    salleBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    salleBtn.textContent = on ? labels[lang].on : labels[lang].off;
+    salleBtn.title = labels[lang].title;
+  }
+  function setSalle(on) {
     if (on) root.setAttribute('data-salle', ''); else root.removeAttribute('data-salle');
-    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    btn.textContent = on ? 'Quitter' : 'Mode salle';
-    try { localStorage.setItem('salle', on ? '1' : '0'); } catch (e) {}
+    store('salle', on ? '1' : '0');
     if (on && navigator.wakeLock) {
       navigator.wakeLock.request('screen').then(function (l) { lock = l; }).catch(function () {});
     } else if (!on && lock) { lock.release().catch(function () {}); lock = null; }
+    paintSalle();
   }
-  var saved = false;
-  try { saved = localStorage.getItem('salle') === '1'; } catch (e) {}
-  if (saved) set(true);
-  btn.addEventListener('click', function () { set(!root.hasAttribute('data-salle')); });
+  function setLang(l) {
+    lang = l === 'en' ? 'en' : 'fr';
+    root.lang = lang;
+    document.querySelectorAll('[data-lang]').forEach(function (el) { el.hidden = el.getAttribute('data-lang') !== lang; });
+    langBtn.textContent = lang === 'fr' ? 'EN' : 'FR';
+    langBtn.setAttribute('lang', lang === 'fr' ? 'en' : 'fr');
+    langBtn.setAttribute('aria-label', lang === 'fr' ? 'Read in English' : 'Lire en français');
+    store('lang', lang);
+    paintSalle();
+  }
+  var start = location.hash === '#en' ? 'en' : (location.hash === '#fr' ? 'fr' : read('lang'));
+  setLang(start || 'fr');
+  if (read('salle') === '1') setSalle(true);
+  salleBtn.addEventListener('click', function () { setSalle(!root.hasAttribute('data-salle')); });
+  langBtn.addEventListener('click', function () { setLang(lang === 'fr' ? 'en' : 'fr'); window.scrollTo(0, 0); });
+  window.addEventListener('hashchange', function () {
+    if (location.hash === '#en' || location.hash === '#fr') setLang(location.hash.slice(1));
+  });
 })();
 </script>
