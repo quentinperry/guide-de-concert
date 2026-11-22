@@ -249,13 +249,20 @@ footer.end details[open] summary { margin-bottom: .75rem; }
 
 /* Billetterie */
 .ticket {
-  display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: .2rem .6rem;
-  margin-top: .4rem; padding: .6rem 1.1rem; border: 1px solid var(--gold); border-radius: 999px;
-  font-family: var(--font-ui); font-size: .82rem; font-weight: 600; color: var(--ink); text-decoration: none;
-  max-width: 100%; overflow-wrap: anywhere;
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-top: .6rem; padding: .85rem 1.6rem; border-radius: 999px;
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: #160F06; text-decoration: none;
+  background: linear-gradient(100deg, #B8893F 0%, #F0D394 45%, #D9B56B 60%, #A97A33 100%);
+  background-size: 220% 100%; background-position: 0% 50%;
+  box-shadow: 0 0 0 1px rgba(240, 211, 148, .35), 0 8px 28px -10px rgba(217, 181, 107, .55);
+  transition: background-position .6s ease, transform .2s ease, box-shadow .2s ease;
 }
-.ticket span { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
-.ticket:hover { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+.ticket span { font-size: 1rem; letter-spacing: 0; transition: transform .2s ease; }
+.ticket:hover { background-position: 100% 50%; transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(240, 211, 148, .5), 0 12px 32px -10px rgba(217, 181, 107, .7); }
+.ticket:hover span { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) { .ticket, .ticket span { transition: none; } }
+:root[data-salle] .ticket { display: none; }
 
 /* Langue */
 .lang-btn {
@@ -275,14 +282,14 @@ footer.end details[open] summary { margin-bottom: .75rem; }
     <p class="sub">Grande messe en ut mineur</p>
     <span class="gold-rule" aria-hidden="true"></span>
     <p class="with">Bizet, <i>Symphonie « Roma »</i> · Rameau, <i>La Nuit</i><strong>Jean-Philippe Sarcos, direction</strong></p>
-    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener"><span>Billetterie</span>my.weezevent.com/grande-messe-en-ut</a>
+    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener">Réserver vos places<span aria-hidden="true">→</span></a>
   </div>
   <div class="hero-text wrap" data-lang="en" lang="en" hidden>
     <h1>MOZART</h1>
     <p class="sub">Great Mass in C minor</p>
     <span class="gold-rule" aria-hidden="true"></span>
     <p class="with">Bizet, <i>“Roma” Symphony</i> · Rameau, <i>La Nuit</i><strong>Jean-Philippe Sarcos, conductor</strong></p>
-    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener"><span>Tickets</span>my.weezevent.com/grande-messe-en-ut</a>
+    <a class="ticket" href="https://my.weezevent.com/grande-messe-en-ut" target="_blank" rel="noopener">Book tickets<span aria-hidden="true">→</span></a>
   </div>
 </header>
 
