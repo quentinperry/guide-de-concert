@@ -213,6 +213,11 @@ dl.lex dt { font-family: var(--font-display); font-size: 1.25rem; color: var(--g
 dl.lex dd { margin: 0; }
 
 ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+
+/* Comment écouter */
+.tips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.tips li { background: var(--surface); padding: .9rem 1rem; display: grid; gap: .25rem; align-content: start; min-width: 0; font-size: .97rem; }
+.tips strong { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; color: var(--c); }
 ul.plain li::marker { color: var(--c); }
 
 /* Pied de page : infos pratiques reléguées ici */
@@ -288,6 +293,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
     <p>Bien avant <em>Carmen</em>, Bizet a 19 ans quand il remporte le prix de Rome, en 1857. Le prix lui offre un séjour à la Villa Médicis, et il découvre une Italie qui le marque durablement. La symphonie « Roma » est née de ces souvenirs. Il la reprend et la corrige pendant une dizaine d'années, sans jamais vraiment s'en satisfaire.</p>
     <p>Le premier mouvement peint un paysage : la forêt de pins qui borde la mer près d'Ostie, l'ancien port de Rome. Il s'ouvre dans le calme, avec les cors au premier plan, puis la chasse s'élance et l'orchestre s'anime.</p>
     <p class="listen"><b>À écouter</b>Le contraste entre l'introduction paisible et l'énergie de la course. Les cors, instruments de la chasse par excellence, servent de fil conducteur.</p>
+      <p class="listen"><b>Guettez</b>Le basculement du calme à l'agitation : le tempo s'accélère, les cuivres sonnent comme des appels de chasse, et l'orchestre se lance au galop. Fermez les yeux et laissez l'image se former : les pins, la mer, la course.</p>
     <div class="note"><strong>Pourquoi Bizet avant Mozart ?</strong> Les deux œuvres sont en <em>ut</em> : ut majeur pour Bizet, ut mineur pour Mozart. On passe de la lumière d'un paysage romain à la gravité d'une messe.</div>
   </div>
 </section>
@@ -334,7 +340,15 @@ footer.end details[open] summary { margin-bottom: .75rem; }
     <p class="sec-label">Guide d'écoute</p>
     <h2>La messe, mouvement par mouvement</h2>
     <p class="hide-salle">Une messe met en musique les cinq prières de l'office catholique qui ne changent pas d'un jour à l'autre : Kyrie, Gloria, Credo, Sanctus et Agnus Dei. Mozart découpe chacune en plusieurs numéros. Touchez « Texte et traduction » pour suivre les paroles.</p>
-    <p class="note hide-salle"><strong>N'applaudissez pas entre les mouvements :</strong> la messe forme un tout. Les applaudissements viennent à la fin, après l'Osanna final.</p>
+    <h3 class="hide-salle">Comment écouter</h3>
+    <ul class="tips hide-salle">
+      <li><strong>Lire, puis lever les yeux</strong><span>Parcourez le texte d'un mouvement pendant la courte pause qui le précède, puis posez le téléphone. Quelques mots suffisent pour savoir ce qui se chante.</span></li>
+      <li><strong>De l'ombre à la lumière</strong><span>Chaque fiche indique la tonalité. Le mineur assombrit, le majeur éclaire. La messe part de l'ut mineur grave du Kyrie et finit dans l'éclat de l'Osanna, en ut majeur.</span></li>
+      <li><strong>Suivre une seule voix</strong><span>Dans une fugue, choisissez un pupitre, les basses par exemple, et ne le lâchez pas. Vous entendrez le thème passer de voix en voix.</span></li>
+      <li><strong>Regarder la scène</strong><span>Dans les doubles chœurs, cherchez quel groupe chante. Dans les airs, regardez quels instruments dialoguent avec la soliste. Les trombones doublent les voix du chœur, selon l'usage des églises de Salzbourg.</span></li>
+      <li><strong>Écouter l'église</strong><span>Laissez le son résonner sous les voûtes après les accords finaux. Ce silence fait partie de l'œuvre.</span></li>
+      <li><strong>Garder les applaudissements</strong><span>La messe forme un tout : on n'applaudit qu'à la fin, après le dernier Osanna.</span></li>
+    </ul>
 
     <p class="part-title">Kyrie</p>
     <article class="mvt">
@@ -342,7 +356,8 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <h3>Kyrie</h3>
         <div class="tags"><span class="tag key">ut mineur</span><span class="tag">Andante moderato</span><span class="tag voices">Chœur · Soprano</span></div>
       </header>
-      <p class="listen"><b>À écouter</b>Un début sombre et grave, chargé de supplication. Au centre, sur « Christe eleison », la soprano s'élève seule au-dessus du chœur, comme une lumière dans l'obscurité. Puis le chœur revient avec la gravité du début.</p>
+      <p class="listen"><b>À écouter</b>L'orchestre installe un climat grave, puis le chœur entre avec ses supplications. Au centre, sur « Christe eleison », la musique passe en majeur et la soprano s'élève seule au-dessus du chœur, comme une lumière dans l'obscurité. On pense que Mozart a écrit cette partie pour la voix de Constance.</p>
+      <p class="listen"><b>Guettez</b>Les grands écarts de la soprano, qui descend dans le grave puis remonte d'un trait vers l'aigu. Puis le retour du chœur et de l'ut mineur, comme une ombre qui revient.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Kyrie eleison.</p><p class="fr">Seigneur, prends pitié.</p>
@@ -358,7 +373,8 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <h3>Gloria in excelsis</h3>
         <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Allegro vivace</span><span class="tag voices">Chœur</span></div>
       </header>
-      <p class="listen"><b>À écouter</b>Après le Kyrie, la lumière éclate : trompettes, timbales et chœur. Mozart rend hommage aux grands chœurs de Haendel. Le ton se fait plus doux sur « et in terra pax ».</p>
+      <p class="listen"><b>À écouter</b>Après le Kyrie, la lumière éclate : trompettes, timbales et chœur. Mozart rend hommage aux grands chœurs de Haendel.</p>
+      <p class="listen"><b>Guettez</b>Le changement de climat sur « et in terra pax » : après la gloire céleste, la paix sur la terre se chante plus calmement, sans fanfare.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Gloria in excelsis Deo,</p><p class="fr">Gloire à Dieu au plus haut des cieux,</p>
@@ -373,6 +389,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Allegro aperto</span><span class="tag voices">Soprano</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un véritable air d'opéra italien, brillant et joyeux. La soprano enchaîne vocalises et grands sauts, presque comme un instrument.</p>
+      <p class="listen"><b>Guettez</b>Les trilles et les longues vocalises sur une seule syllabe. Remarquez où la chanteuse reprend son souffle pour relancer la phrase, et comment l'orchestre lui répond, comme dans un concerto.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Laudamus te, benedicimus te,</p><p class="fr">Nous te louons, nous te bénissons,</p>
@@ -387,6 +404,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">la mineur</span><span class="tag">Adagio</span><span class="tag voices">Chœur à 5 voix</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un moment très bref et recueilli, aux harmonies tendues. Le chœur se divise en cinq voix, ce qui donne une matière plus dense.</p>
+      <p class="listen"><b>Guettez</b>Les dissonances : des notes qui se frottent, puis se résolvent, comme des tensions qui se dénouent. Une minute à peine, mais l'une des pages les plus intenses de la messe.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Gratias agimus tibi propter magnam gloriam tuam.</p><p class="fr">Nous te rendons grâce pour ton immense gloire.</p>
@@ -400,6 +418,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">ré mineur</span><span class="tag">Allegro moderato</span><span class="tag voices">Deux sopranos</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Les deux sopranos se poursuivent, s'imitent et s'entrelacent. Fermez les yeux et suivez l'une des deux voix : l'autre lui répond sans cesse.</p>
+      <p class="listen"><b>Guettez</b>Les moments où les deux voix se rejoignent pour chanter ensemble, en harmonie, avant de se séparer à nouveau. Elles ont la même tessiture, au point qu'il devient difficile de dire laquelle mène.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Domine Deus, Rex caelestis,</p><p class="fr">Seigneur Dieu, Roi du ciel,</p>
@@ -416,6 +435,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">sol mineur</span><span class="tag">Largo</span><span class="tag voices">Double chœur à 8 voix</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Le sommet dramatique de la messe. Deux chœurs se répondent et s'unissent, portés par des rythmes pointés implacables à l'orchestre, comme une procession écrasante. Notez la répétition obsédante de « miserere nobis ».</p>
+      <p class="listen"><b>Guettez</b>La ligne de basse qui descend pas à pas, par demi-tons : un motif baroque traditionnel de la lamentation. Puis les moments où les deux chœurs, après s'être renvoyé les phrases, se fondent en un seul bloc de huit voix.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Qui tollis peccata mundi, miserere nobis.</p><p class="fr">Toi qui enlèves les péchés du monde, prends pitié de nous.</p>
@@ -431,6 +451,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">mi mineur</span><span class="tag">Allegro</span><span class="tag voices">Deux sopranos · Ténor</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Un trio vif et serré, presque une scène d'ensemble d'opéra. Le ténor fait ici sa première apparition en soliste.</p>
+      <p class="listen"><b>Guettez</b>Les entrées en imitation : chaque voix reprend la phrase de la précédente, comme dans une conversation qui s'emballe.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Quoniam tu solus Sanctus,</p><p class="fr">Car toi seul es saint,</p>
@@ -446,6 +467,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Adagio · Alla breve</span><span class="tag voices">Chœur</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Quelques mesures solennelles, puis une grande fugue : les voix entrent l'une après l'autre sur le même thème, puis se superposent. C'est l'hommage le plus direct de Mozart à Bach. Le Gloria se termine dans l'éclat sur « Amen ».</p>
+      <p class="listen"><b>Guettez</b>Le thème de la fugue, chanté d'abord par une seule voix. Essayez de le reconnaître à chaque nouvelle entrée, même quand il se cache au milieu des autres. Vers la fin, les entrées se rapprochent et se chevauchent : la tension monte jusqu'à l'« Amen ».</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Jesu Christe,</p><p class="fr">Jésus-Christ,</p>
@@ -461,6 +483,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Allegro maestoso</span><span class="tag voices">Chœur à 5 voix</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Une affirmation de foi énergique et rapide. Le chœur avance d'un bloc, porté par l'élan de l'orchestre.</p>
+      <p class="listen"><b>Guettez</b>Le texte défile vite : le chœur proclame plus qu'il ne médite. Ce contraste prépare le moment suspendu qui suit.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Credo in unum Deum, Patrem omnipotentem,</p><p class="fr">Je crois en un seul Dieu, le Père tout-puissant,</p>
@@ -479,7 +502,8 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <h3>Et incarnatus est</h3>
         <div class="tags"><span class="tag key">fa majeur</span><span class="tag">Andante · 6/8</span><span class="tag voices">Soprano · flûte, hautbois, basson</span></div>
       </header>
-      <p class="listen"><b>À écouter</b>Le moment le plus célèbre de la messe, et peut-être le plus tendre. Sur un balancement de berceuse, la soprano chante la naissance du Christ avec trois instruments à vent solistes. Vers la fin, l'orchestre se tait : la voix, la flûte, le hautbois et le basson improvisent ensemble une longue cadence, suspendue dans le temps.</p>
+      <p class="listen"><b>À écouter</b>Le moment le plus célèbre de la messe, et peut-être le plus tendre. Sur un balancement de berceuse, la soprano chante la naissance du Christ avec trois instruments à vent solistes. Vers la fin, l'orchestre se tait : la voix, la flûte, le hautbois et le basson s'enlacent dans une longue cadence entièrement écrite par Mozart, suspendue dans le temps.</p>
+      <p class="listen"><b>Guettez</b>La conversation entre la voix et les trois vents : chacun reprend la mélodie de l'autre, comme quatre solistes à égalité. Pendant la cadence, retenez votre souffle : c'est le moment le plus intime de la soirée.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Et incarnatus est de Spiritu Sancto ex Maria Virgine,</p><p class="fr">Et par l'Esprit Saint, il a pris chair de la Vierge Marie,</p>
@@ -495,6 +519,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">ut majeur</span><span class="tag">Largo · Allegro comodo</span><span class="tag voices">Double chœur à 8 voix</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Le double chœur revient, majestueux, pour le « Saint, saint, saint ». L'Osanna est une fugue jubilatoire où les deux chœurs se renvoient le thème.</p>
+      <p class="listen"><b>Guettez</b>Le thème de l'Osanna qui passe d'un chœur à l'autre. Sous les voûtes, le son semble venir de plusieurs endroits à la fois, comme à Venise.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth.</p><p class="fr">Saint, saint, saint, le Seigneur, Dieu de l'univers.</p>
@@ -510,6 +535,7 @@ footer.end details[open] summary { margin-bottom: .75rem; }
         <div class="tags"><span class="tag key">la mineur</span><span class="tag">Allegro comodo</span><span class="tag voices">Quatuor de solistes · double chœur</span></div>
       </header>
       <p class="listen"><b>À écouter</b>Les quatre solistes chantent enfin ensemble. Dans la partition de Mozart, c'est la seule intervention de la basse soliste de toute la messe ! Puis le double chœur reprend l'Osanna et conclut l'œuvre dans la joie.</p>
+      <p class="listen"><b>Guettez</b>Le Benedictus est en la mineur, plus inquiet qu'on ne l'attendrait pour une bénédiction. Le retour de l'Osanna referme la messe en ut majeur, loin de l'ombre du Kyrie : de l'obscurité à la lumière, c'est le parcours de toute l'œuvre. C'est le moment d'applaudir.</p>
       <details class="text"><summary>Texte et traduction</summary>
         <div class="bi">
           <p class="la">Benedictus qui venit in nomine Domini.</p><p class="fr">Béni soit celui qui vient au nom du Seigneur.</p>
