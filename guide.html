@@ -2,42 +2,32 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Montserrat:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-/* Mise en page : une colonne de lecture (~66 car.), bandeau d'ouverture bleu de Prusse, filets dorés comme sur une partition gravée. */
+/* Mise en page : univers de l'affiche, nuit de concert dans une église. Fond noir pailleté d'or, capitales Didone espacées,
+   une colonne de lecture (~66 car.), et les couleurs du logo de l'Académie (rose, rouge, orange, or) pour marquer chaque partie.
+   Thème unique sombre, choisi exprès : le guide se lit dans une salle plongée dans la pénombre. */
 :root {
-  --bg: #EDEFF3;
-  --surface: #F8F9FB;
-  --ink: #1A2030;
-  --muted: #535B6E;
-  --rule: #C8CDD8;
-  --accent: #7E611B;      /* or terni */
-  --prussian: #1F3A5F;
-  --hero-bg: #1B2F4D;
-  --hero-ink: #EEE8D8;
-  --hero-accent: #D9B566;
-  --font-display: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --bg: #080706;
+  --surface: #13110F;
+  --ink: #EEE7D7;
+  --muted: #A69E90;
+  --rule: #2B2620;
+  --gold: #D9B56B;
+  --pink: #E5428C;
+  --red: #E8513F;
+  --orange: #EF7F2D;
+  --amber: #EDB13E;
+  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --font-text: "Spectral", Georgia, "Times New Roman", serif;
-  --font-ui: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ui: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --measure: 40rem;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0F141E; --surface: #161D2A; --ink: #E4E0D4; --muted: #9AA2B4; --rule: #2B3446;
-    --accent: #D2AE5E; --prussian: #93B3DA; --hero-bg: #121C2E; --hero-ink: #EEE8D8; --hero-accent: #D9B566;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0F141E; --surface: #161D2A; --ink: #E4E0D4; --muted: #9AA2B4; --rule: #2B3446;
-  --accent: #D2AE5E; --prussian: #93B3DA; --hero-bg: #121C2E; --hero-ink: #EEE8D8; --hero-accent: #D9B566;
   color-scheme: dark;
 }
-/* Mode salle : presque noir, texte ambré peu lumineux, pour ne pas éblouir les voisins. */
+/* Mode salle : texte ambré très peu lumineux, pour ne pas éblouir les voisins. */
 :root[data-salle] {
-  --bg: #000; --surface: #080706; --ink: #9C8A6C; --muted: #6A5D4A; --rule: #1E1A15;
-  --accent: #A3814A; --prussian: #8C7A5E; --hero-bg: #000; --hero-ink: #9C8A6C; --hero-accent: #A3814A;
-  color-scheme: dark;
+  --bg: #000; --surface: #070605; --ink: #9A8968; --muted: #675B48; --rule: #1C1813;
+  --gold: #9E7F49; --pink: #8A5A48; --red: #8A5A48; --orange: #8F6845; --amber: #957446;
 }
 
 * { box-sizing: border-box; }
@@ -52,11 +42,10 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 :root[data-salle] body { font-size: 1.2rem; }
-a { color: var(--prussian); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; line-height: 1.15; margin: 0; }
+a { color: var(--gold); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; line-height: 1.12; margin: 0; }
 p { margin: 0; }
-em { font-style: italic; }
 
 .wrap {
   max-width: calc(var(--measure) + 2rem);
@@ -66,182 +55,195 @@ em { font-style: italic; }
 }
 
 /* ---------- Ouverture ---------- */
-.hero {
-  background: var(--hero-bg);
-  color: var(--hero-ink);
-  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
-  padding-top: calc(env(safe-area-inset-top, 0px) + 3rem);
-  padding-bottom: 2.5rem;
+.hero { position: relative; background: var(--bg); }
+.hero-photo { position: relative; max-width: 60rem; margin-inline: auto; }
+.hero-photo img { display: block; width: 100%; height: auto; aspect-ratio: 745 / 505; object-fit: cover; max-width: 100%; }
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 45%, var(--bg) 98%),
+              linear-gradient(to right, var(--bg) 0, transparent 6%, transparent 94%, var(--bg) 100%);
 }
-.hero .wrap { display: grid; gap: 1.1rem; }
-.eyebrow {
-  font-family: var(--font-ui); font-size: .78rem; font-weight: 600;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--hero-accent);
+.hero-text {
+  position: relative; text-align: center; margin-top: -2.5rem; padding-bottom: 2.75rem;
+  display: grid; gap: .9rem; justify-items: center;
+  background:
+    radial-gradient(1.2px 1.2px at 12% 30%, var(--gold), transparent 70%),
+    radial-gradient(1px 1px at 27% 78%, var(--gold), transparent 70%),
+    radial-gradient(1.4px 1.4px at 41% 52%, var(--amber), transparent 70%),
+    radial-gradient(1px 1px at 58% 88%, var(--gold), transparent 70%),
+    radial-gradient(1.2px 1.2px at 69% 40%, var(--gold), transparent 70%),
+    radial-gradient(1px 1px at 83% 70%, var(--amber), transparent 70%),
+    radial-gradient(1.3px 1.3px at 92% 22%, var(--gold), transparent 70%),
+    radial-gradient(1px 1px at 6% 90%, var(--gold), transparent 70%);
 }
-.hero h1 { font-size: clamp(2.4rem, 9vw, 3.9rem); }
-.hero h1 i { color: var(--hero-accent); }
-.hero .lede { font-size: 1.15rem; max-width: 34rem; opacity: .92; }
-.staff { width: 100%; max-width: 22rem; height: auto; display: block; }
-.staff line { stroke: var(--hero-accent); stroke-width: 1; opacity: .55; }
-.staff text { fill: var(--hero-accent); font-family: var(--font-text); }
-.credits { font-family: var(--font-ui); font-size: .95rem; line-height: 1.5; opacity: .85; }
+:root[data-salle] .hero-photo { display: none; }
+:root[data-salle] .hero-text { margin-top: 0; padding-top: 2rem; background: none; }
+.hero h1 { font-size: clamp(3rem, 14vw, 5.2rem); letter-spacing: .06em; font-weight: 400; line-height: 1; }
+.hero .sub {
+  font-family: var(--font-display); font-style: italic; font-size: clamp(.95rem, 3.6vw, 1.15rem);
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ink);
+}
+.hero .gold-rule { width: min(16rem, 60%); height: 1px; background: var(--gold); opacity: .8; }
+.hero .with {
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.hero .with strong { display: block; margin-top: .35rem; color: var(--ink); font-weight: 700; }
 
 /* ---------- Barre de navigation ---------- */
 body::before {
   content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
-  z-index: 10; background: var(--surface);
+  z-index: 10; background: var(--bg);
 }
 .bar {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
-  background: var(--surface); border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-block: 1px solid var(--rule);
 }
 .bar .wrap { display: flex; align-items: center; gap: .75rem; padding-block: .5rem; }
 .bar nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .bar nav::-webkit-scrollbar { display: none; }
-.bar ul { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; white-space: nowrap; }
+.bar ul { display: flex; gap: .15rem; list-style: none; margin: 0; padding: 0; white-space: nowrap; }
 .bar nav a {
-  display: block; padding: .35rem .6rem; border-radius: 999px;
-  font-family: var(--font-ui); font-size: .88rem; font-weight: 600;
+  display: block; padding: .4rem .55rem; border-radius: 999px;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
   color: var(--muted); text-decoration: none;
 }
-.bar nav a:hover { color: var(--ink); background: var(--bg); }
+.bar nav a:hover { color: var(--ink); }
 .salle-btn {
-  flex: none; font-family: var(--font-ui); font-size: .85rem; font-weight: 600;
-  padding: .4rem .75rem; border-radius: 999px; cursor: pointer;
-  border: 1px solid var(--accent); background: transparent; color: var(--accent);
+  flex: none; font-family: var(--font-ui); font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: .45rem .75rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--gold); background: transparent; color: var(--gold);
 }
-.salle-btn[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.salle-btn[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
 
 /* ---------- Sections ---------- */
-main { padding-block: 1rem 4rem; }
-section { padding-block: 2.75rem 0.5rem; scroll-margin-top: 4rem; }
+main { padding-block: .5rem 3rem; }
+section { padding-block: 3rem .5rem; scroll-margin-top: 4rem; --c: var(--gold); }
 section > .wrap { display: grid; gap: 1.1rem; }
 .sec-label {
-  font-family: var(--font-ui); font-size: .75rem; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--accent);
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--c);
   display: flex; align-items: center; gap: .75rem;
 }
-.sec-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-h2 { font-size: clamp(1.9rem, 6vw, 2.5rem); }
+.sec-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--c), transparent); opacity: .6; }
+h2 { font-size: clamp(1.9rem, 6.5vw, 2.6rem); }
 h3 { font-size: 1.45rem; }
-.meta { font-family: var(--font-ui); font-size: .92rem; color: var(--muted); }
+.meta { font-family: var(--font-ui); font-size: .85rem; color: var(--muted); line-height: 1.55; }
 
 /* Programme */
-.prog { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
-.prog li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .25rem .75rem; padding-block: 1rem; border-bottom: 1px solid var(--rule); }
-.prog .n { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); line-height: 1.1; }
+.prog { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--rule); }
+.prog li { display: grid; grid-template-columns: 2.4rem 1fr; gap: .2rem .75rem; padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+.prog .n { font-family: var(--font-display); font-size: 1.7rem; line-height: 1.05; }
+.prog li:nth-child(1) .n { color: var(--pink); }
+.prog li:nth-child(2) .n { color: var(--orange); }
+.prog li:nth-child(3) .n { color: var(--amber); }
 .prog .t { font-size: 1.12rem; font-weight: 600; }
-.prog .d { grid-column: 2; font-family: var(--font-ui); font-size: .92rem; color: var(--muted); }
+.prog .d { grid-column: 2; font-family: var(--font-ui); font-size: .85rem; color: var(--muted); }
 
 .note {
-  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
-  padding: 1rem 1.1rem; font-family: var(--font-ui); font-size: .97rem; line-height: 1.55;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 1rem 1.1rem; font-family: var(--font-ui); font-size: .9rem; line-height: 1.6;
 }
-.note strong { color: var(--accent); }
+.note strong { color: var(--gold); }
 
-blockquote {
-  margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent);
-  font-style: italic; color: var(--ink);
-}
-blockquote footer { font-style: normal; font-family: var(--font-ui); font-size: .88rem; color: var(--muted); margin-top: .4rem; }
-
-/* Dates */
-.dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
-.dates li { display: grid; gap: .15rem; align-content: start; padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
-.dates time { font-family: var(--font-ui); font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-variant-numeric: tabular-nums; }
-.dates .place { font-size: 1.1rem; font-weight: 600; }
-.dates .addr, .dates .pmr { font-family: var(--font-ui); font-size: .9rem; color: var(--muted); }
-.dates .pmr::before { content: "♿ "; }
+blockquote { margin: 0; padding-left: 1.1rem; border-left: 1px solid var(--gold); font-style: italic; }
+blockquote footer { font-style: normal; font-family: var(--font-ui); font-size: .8rem; color: var(--muted); margin-top: .4rem; }
 
 /* Influences */
-.infl { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.infl { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
 .infl div { background: var(--surface); padding: 1rem 1.1rem; display: grid; gap: .35rem; align-content: start; min-width: 0; }
 .infl h3 { font-size: 1.2rem; }
 .infl p { font-size: .97rem; }
-.infl .where { font-family: var(--font-ui); font-size: .85rem; color: var(--accent); font-weight: 600; }
+.infl .where { font-family: var(--font-ui); font-size: .78rem; letter-spacing: .04em; color: var(--gold); font-weight: 600; }
 
 /* Frise */
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
 .timeline li { display: grid; grid-template-columns: 4.2rem 1fr; gap: .9rem; align-items: baseline; }
-.timeline time { font-family: var(--font-ui); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); font-size: .95rem; }
+.timeline time { font-family: var(--font-display); font-size: 1.25rem; color: var(--gold); font-variant-numeric: lining-nums tabular-nums; }
 
 /* Guide d'écoute */
-.part-title { font-family: var(--font-ui); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 1rem; }
+.part-title { font-family: var(--font-display); font-style: italic; font-size: 1rem; letter-spacing: .24em; text-transform: uppercase; color: var(--c); padding-top: 1.25rem; }
 .mvt { border-top: 1px solid var(--rule); padding-block: 1.1rem; display: grid; gap: .55rem; }
-.mvt header { display: grid; gap: .3rem; }
+.mvt header { display: grid; gap: .35rem; }
 .mvt h3 { font-size: 1.5rem; }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 .tag {
-  font-family: var(--font-ui); font-size: .78rem; font-weight: 600; line-height: 1;
-  padding: .3rem .5rem; border-radius: 4px; border: 1px solid var(--rule); color: var(--muted); background: var(--surface);
+  font-family: var(--font-ui); font-size: .7rem; font-weight: 600; letter-spacing: .04em; line-height: 1;
+  padding: .32rem .5rem; border-radius: 3px; border: 1px solid var(--rule); color: var(--muted); background: var(--surface);
 }
-.tag.key { color: var(--accent); border-color: currentColor; background: transparent; }
-.tag.voices { color: var(--prussian); }
-.listen { font-size: 1rem; }
-.listen b { font-family: var(--font-ui); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-right: .35rem; }
+.tag.key { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 55%, transparent); background: transparent; }
+.tag.voices { color: var(--ink); }
+.listen b { font-family: var(--font-ui); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--c); margin-right: .4rem; }
 
-details.text { border-radius: 6px; }
 details.text summary {
-  cursor: pointer; list-style: none; font-family: var(--font-ui); font-size: .88rem; font-weight: 600; color: var(--prussian);
-  display: inline-flex; align-items: center; gap: .4rem; padding-block: .2rem;
+  cursor: pointer; list-style: none; font-family: var(--font-ui); font-size: .78rem; font-weight: 600; letter-spacing: .06em; color: var(--gold);
+  display: inline-flex; align-items: center; gap: .45rem; padding-block: .2rem;
 }
 details.text summary::-webkit-details-marker { display: none; }
 details.text summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.2rem; height: 1.2rem; border: 1px solid currentColor; border-radius: 50%; font-size: .85rem; line-height: 1; }
 details.text[open] summary::before { content: "−"; }
-.bi { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem 1.25rem; margin-top: .6rem; padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.bi { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem 1.25rem; margin-top: .6rem; padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
 .bi .la { font-style: italic; }
 .bi .fr { color: var(--muted); }
-.bi p + p { margin: 0; }
 @media (max-width: 34rem) {
   .bi { grid-template-columns: 1fr; }
   .bi .fr { margin-bottom: .55rem; }
 }
 
 /* Qui chante quoi */
-.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font-family: var(--font-ui); font-size: .9rem; min-width: 30rem; }
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-family: var(--font-ui); font-size: .85rem; min-width: 24rem; }
 th, td { padding: .55rem .6rem; text-align: center; border-bottom: 1px solid var(--rule); }
 th:first-child, td:first-child { text-align: left; }
-thead th { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+thead th { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 tbody th { font-weight: 600; }
 tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
-td.on { color: var(--accent); font-weight: 700; }
+td.on { color: var(--gold); letter-spacing: .1em; }
 
 .people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .75rem 1.5rem; }
 .people li { display: grid; gap: .1rem; border-top: 1px solid var(--rule); padding-top: .6rem; }
 .people .name { font-size: 1.15rem; font-weight: 600; }
-.people .role { font-family: var(--font-ui); font-size: .88rem; color: var(--muted); }
+.people .role { font-family: var(--font-ui); font-size: .8rem; letter-spacing: .04em; color: var(--muted); }
 
 /* Lexique */
 dl.lex { margin: 0; display: grid; gap: .9rem; }
-dl.lex div { display: grid; gap: .15rem; }
-dl.lex dt { font-family: var(--font-display); font-size: 1.25rem; color: var(--accent); }
+dl.lex div { display: grid; gap: .1rem; }
+dl.lex dt { font-family: var(--font-display); font-size: 1.25rem; color: var(--gold); }
 dl.lex dd { margin: 0; }
 
 ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+ul.plain li::marker { color: var(--c); }
 
-footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block: 1.5rem; font-family: var(--font-ui); font-size: .88rem; color: var(--muted); }
+/* Pied de page : infos pratiques reléguées ici */
+footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block: 1.5rem 2rem; }
+footer.end .wrap { display: grid; gap: 1rem; }
+footer.end details summary {
+  cursor: pointer; font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+}
+footer.end details[open] summary { margin-bottom: .75rem; }
+.dates { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; font-family: var(--font-ui); font-size: .82rem; color: var(--muted); }
+.dates li { display: grid; gap: .05rem; }
+.dates time { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .72rem; }
+.dates li:nth-child(1) time { color: var(--pink); }
+.dates li:nth-child(2) time { color: var(--red); }
+.dates li:nth-child(3) time { color: var(--orange); }
+.dates li:nth-child(4) time { color: var(--amber); }
+.dates .place { color: var(--ink); font-weight: 600; }
+.colophon { font-family: var(--font-ui); font-size: .78rem; color: var(--muted); line-height: 1.6; }
 
-/* En mode salle, on masque tout ce qui n'aide pas à suivre la musique. */
 :root[data-salle] .hide-salle { display: none; }
-:root[data-salle] details.text .bi { border-color: transparent; }
 </style>
 
 <header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Guide du spectateur · Académie du Palais royal</p>
-    <h1>Grande messe <i>en ut mineur</i></h1>
-    <svg class="staff" viewBox="0 0 352 64" role="img" aria-label="Portée avec l'armure d'ut mineur : trois bémols">
-      <line x1="0" x2="352" y1="12" y2="12"/><line x1="0" x2="352" y1="22" y2="22"/>
-      <line x1="0" x2="352" y1="32" y2="32"/><line x1="0" x2="352" y1="42" y2="42"/>
-      <line x1="0" x2="352" y1="52" y2="52"/>
-      <text x="14" y="38" font-size="26">♭</text>
-      <text x="30" y="23" font-size="26">♭</text>
-      <text x="46" y="43" font-size="26">♭</text>
-      <text x="72" y="36" font-size="13" font-style="italic">ut mineur, trois bémols à la clé</text>
-    </svg>
-    <p class="lede">Bizet, Mozart et Rameau en une soirée. Ce guide vous donne le contexte des œuvres, ce qu'il faut guetter pendant l'écoute et le texte latin traduit, pour suivre la messe pendant le concert.</p>
-    <p class="credits">Thaïs Raï-Westphal, Charlotte Mercier, Yann Salaün, Angelo Heck<br>Chœur et orchestre de l'Académie du Palais royal<br>Jean-Philippe Sarcos, direction</p>
+  <div class="hero-photo">
+    <img src="affiche-chef.jpg" width="745" height="505" alt="Jean-Philippe Sarcos dirigeant le chœur et l'orchestre de l'Académie du Palais royal dans une église illuminée pour Noël">
+  </div>
+  <div class="hero-text wrap">
+    <h1>MOZART</h1>
+    <p class="sub">Grande messe en ut mineur</p>
+    <span class="gold-rule" aria-hidden="true"></span>
+    <p class="with">Bizet, <i>Symphonie « Roma »</i> · Rameau, <i>La Nuit</i><strong>Jean-Philippe Sarcos, direction</strong></p>
   </div>
 </header>
 
@@ -252,11 +254,10 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
         <li><a href="#programme">Programme</a></li>
         <li><a href="#bizet">Bizet</a></li>
         <li><a href="#mozart">Mozart</a></li>
-        <li><a href="#ecoute">Guide d'écoute</a></li>
-        <li><a href="#rameau">À vous de chanter</a></li>
+        <li><a href="#ecoute">Écoute</a></li>
+        <li><a href="#rameau">À vous !</a></li>
         <li><a href="#interpretes">Interprètes</a></li>
         <li><a href="#lexique">Lexique</a></li>
-        <li><a href="#salle">En salle</a></li>
       </ul>
     </nav>
     <button class="salle-btn" id="salle-toggle" type="button" aria-pressed="false" title="Écran très sombre pour lire pendant le concert">Mode salle</button>
@@ -265,9 +266,9 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
 
 <main>
 
-<section id="programme" class="hide-salle">
+<section id="programme" class="hide-salle" style="--c: var(--pink)">
   <div class="wrap">
-    <p class="sec-label">Le programme</p>
+    <p class="sec-label">Ce soir</p>
     <h2>Trois œuvres, trois siècles de chant</h2>
     <p class="meta">Environ 1 h 45, sans entracte. Jean-Philippe Sarcos ouvre la soirée en présentant les œuvres.</p>
     <ol class="prog">
@@ -275,20 +276,13 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
       <li><span class="n">II</span><span class="t">Mozart, Grande messe en ut mineur, KV 427</span><span class="d">1783 · Chœur, quatre solistes et orchestre · version Landon / Nebois</span></li>
       <li><span class="n">III</span><span class="t">Rameau, La Nuit</span><span class="d">En bis · chœur participatif : c'est vous qui chantez</span></li>
     </ol>
-    <h3>Dates et lieux</h3>
-    <ul class="dates">
-      <li><time datetime="2026-12-10T21:00">Jeu. 10 décembre · 21 h</time><span class="place">Église Saint-François-de-Sales</span><span class="addr">15-17, rue Ampère, 75017 Paris</span><span class="pmr">Accès PMR : rampe sur la gauche</span></li>
-      <li><time datetime="2026-12-13T15:00">Dim. 13 décembre · 15 h</time><span class="place">Église Saint-Honoré-d'Eylau</span><span class="addr">64 bis, avenue Raymond-Poincaré, 75116 Paris</span><span class="pmr">Accès PMR : rampe sur la gauche</span></li>
-      <li><time datetime="2026-12-16T21:00">Mer. 16 décembre · 21 h</time><span class="place">Église Saint-Sulpice</span><span class="addr">2, rue Palatine, 75006 Paris</span><span class="pmr">Accès PMR : rampe</span></li>
-      <li><time datetime="2026-12-18T21:00">Ven. 18 décembre · 21 h</time><span class="place">Église de la Sainte-Trinité</span><span class="addr">Place d'Estienne-d'Orves, 75009 Paris</span><span class="pmr">Accès PMR : rampe au 3, rue de Cheverus</span></li>
-    </ul>
-    <div class="note"><strong>Avant d'entrer :</strong> lisez la page « Mozart » et survolez le guide d'écoute. Pendant le concert, touchez <strong>Mode salle</strong> en haut de l'écran : la page passe en très faible luminosité pour suivre le texte latin sans gêner vos voisins.</div>
+    <div class="note"><strong>Pendant le concert,</strong> touchez <strong>Mode salle</strong> en haut de l'écran : la page passe en très faible luminosité pour suivre le texte latin sans gêner vos voisins. Pensez aussi à mettre votre téléphone en silencieux.</div>
   </div>
 </section>
 
-<section id="bizet" class="hide-salle">
+<section id="bizet" class="hide-salle" style="--c: var(--red)">
   <div class="wrap">
-    <p class="sec-label">Ouverture · Bizet</p>
+    <p class="sec-label">I · Bizet</p>
     <h2>Une chasse dans la forêt d'Ostie</h2>
     <p class="meta">Georges Bizet (1838-1875) · Symphonie en ut majeur « Roma », premier mouvement</p>
     <p>Bien avant <em>Carmen</em>, Bizet a 19 ans quand il remporte le prix de Rome, en 1857. Le prix lui offre un séjour à la Villa Médicis, et il découvre une Italie qui le marque durablement. La symphonie « Roma » est née de ces souvenirs. Il la reprend et la corrige pendant une dizaine d'années, sans jamais vraiment s'en satisfaire.</p>
@@ -298,9 +292,9 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
   </div>
 </section>
 
-<section id="mozart" class="hide-salle">
+<section id="mozart" class="hide-salle" style="--c: var(--orange)">
   <div class="wrap">
-    <p class="sec-label">L'œuvre · Mozart</p>
+    <p class="sec-label">II · Mozart</p>
     <h2>Une messe pour Constance</h2>
     <p class="meta">Wolfgang Amadeus Mozart (1756-1791) · Messe en ut mineur, KV 427 · Vienne, 1782-1783</p>
     <p>En 1781, Mozart claque la porte de son employeur, le prince-archevêque de Salzbourg, et s'installe à Vienne en musicien indépendant. L'été suivant, il épouse Constance Weber, malgré les réticences de son père Leopold.</p>
@@ -313,7 +307,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
 
     <h3>Une œuvre inachevée</h3>
     <p>Mozart n'a jamais terminé cette messe, et personne ne sait vraiment pourquoi. Le Kyrie et le Gloria sont complets. Le Credo s'arrête après l'« Et incarnatus est », avec une orchestration en partie esquissée seulement. Le Sanctus et le Benedictus nous sont parvenus avec des parties manquantes, qu'il a fallu reconstituer. L'Agnus Dei n'a jamais été écrit.</p>
-    <p>Mozart ne l'a pas oubliée pour autant : en 1785, il en recycle une grande partie dans une cantate italienne, <em>Davide penitente</em>. Pour combler les lacunes de la partition, plusieurs musicologues ont proposé des reconstitutions. Ce soir, vous entendrez la version Landon / Nebois.</p>
+    <p>Mozart ne l'a pas oubliée pour autant : en 1785, il en recycle une grande partie dans une cantate italienne, <em>Davide penitente</em>. Pour combler les lacunes de la partition, plusieurs musicologues ont proposé des reconstitutions. Ce soir, vous entendez la version Landon / Nebois.</p>
 
     <h3>Tout ce que Mozart savait faire</h3>
     <p>À Vienne, le baron van Swieten organise chaque dimanche des séances où Mozart découvre les fugues de Bach et les oratorios de Haendel. Il en sort bouleversé, et cette messe en porte la trace. Il y réunit quatre traditions, et chacune a ses moments phares :</p>
@@ -335,7 +329,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
   </div>
 </section>
 
-<section id="ecoute">
+<section id="ecoute" style="--c: var(--amber)">
   <div class="wrap">
     <p class="sec-label">Guide d'écoute</p>
     <h2>La messe, mouvement par mouvement</h2>
@@ -523,43 +517,40 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
         </div>
       </details>
     </article>
-    <p class="meta">Les tonalités, les tempos et la répartition des voix sont ceux de la partition de Mozart. La version jouée ce soir, celle de Landon et Nebois, peut s'en écarter sur certains détails.</p>
+    <p class="meta hide-salle">Les tonalités, les tempos et la répartition des voix sont ceux de la partition de Mozart. La version jouée ce soir, celle de Landon et Nebois, peut s'en écarter sur certains détails.</p>
   </div>
 </section>
 
-<section id="rameau">
+<section id="rameau" style="--c: var(--pink)">
   <div class="wrap">
-    <p class="sec-label">En bis · Rameau</p>
+    <p class="sec-label">III · En bis · Rameau</p>
     <h2>À vous de chanter !</h2>
     <p class="meta">Jean-Philippe Rameau (1683-1764) · La Nuit · arrangement de J. Noyon pour chœur à 4 voix mixtes</p>
     <p class="hide-salle">Vous avez peut-être cette mélodie en tête sans le savoir : c'est le chant que Clément Mathieu fait répéter à ses élèves dans le film <em>Les Choristes</em> (2004). À l'origine, la musique vient d'un chœur d'<em>Hippolyte et Aricie</em>, le premier opéra de Rameau, créé en 1733. J. Noyon l'a arrangée bien plus tard pour chœur à quatre voix, sur des paroles françaises.</p>
-    <p class="hide-salle">Clin d'œil de fin de soirée : <em>La Nuit</em> est en mi bémol majeur, avec la même armure à trois bémols que l'ut mineur de la messe de Mozart.</p>
-    <p>Ce soir, Jean-Philippe Sarcos devient votre chef de chœur, avec le chœur et l'orchestre de l'Académie à vos côtés. Alors, serez-vous plutôt Morhange, Pépinot… ou pupitre ?</p>
+    <p>Jean-Philippe Sarcos devient votre chef de chœur, avec le chœur et l'orchestre de l'Académie à vos côtés. Alors, serez-vous plutôt Morhange, Pépinot… ou pupitre ?</p>
     <div class="note">
-      <strong>Pour bien chanter avec nous</strong>
       <ul class="plain">
-        <li>Écoutez <a href="https://youtu.be/Vel-9_wA_WQ" target="_blank" rel="noopener">l'enregistrement</a> deux ou trois fois avant de venir.</li>
-        <li>Ouvrez la <a href="rameau-la-nuit-partition.pdf" target="_blank" rel="noopener">partition de <em>La Nuit</em> (PDF, 3 pages)</a>. Tout le public chante la même chose : la mélodie principale, sur la ligne du haut marquée « Soprano ». Le chœur de l'Académie se charge des autres voix.</li>
+        <li>Ouvrez la <a href="rameau-la-nuit-partition.pdf" target="_blank" rel="noopener">partition de <em>La Nuit</em> (PDF, 3 pages)</a>. Tout le public chante la mélodie principale, sur la ligne du haut marquée « Soprano ». Le chœur de l'Académie se charge des autres voix.</li>
         <li>Pas besoin de lire la musique : la mélodie est simple et se retient vite.</li>
+        <li>Suivez les gestes du chef : il vous indique quand respirer, quand commencer et quand chanter plus doucement.</li>
         <li>Là où la partition indique <strong>B.F.</strong>, chantez <em>bouche fermée</em>, c'est-à-dire en fredonnant, lèvres closes.</li>
-        <li>Au début de la deuxième strophe, la partition indique « Solo » : ce soir, il n'y a pas de soliste, tout le monde fredonne bouche fermée.</li>
-        <li>Suivez les gestes du chef : il vous indiquera quand respirer, quand commencer et quand chanter plus doucement.</li>
+        <li>Au début de la deuxième strophe, la partition indique « Solo » : il n'y a pas de soliste, tout le monde fredonne bouche fermée.</li>
         <li>C'est un chant de nuit : chantez doux, avec une voix posée, plutôt que fort.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section id="interpretes">
+<section id="interpretes" style="--c: var(--red)">
   <div class="wrap">
     <p class="sec-label">Les interprètes</p>
-    <h2>Sur scène ce soir</h2>
+    <h2>Sur scène</h2>
     <ul class="people">
       <li><span class="name">Thaïs Raï-Westphal</span><span class="role">Soprano I</span></li>
       <li><span class="name">Charlotte Mercier</span><span class="role">Soprano II</span></li>
       <li><span class="name">Yann Salaün</span><span class="role">Ténor</span></li>
       <li><span class="name">Angelo Heck</span><span class="role">Basse</span></li>
-      <li><span class="name">Académie du Palais royal</span><span class="role">Chœur et orchestre · <a href="https://academie-de-musique.com" target="_blank" rel="noopener">academie-de-musique.com</a></span></li>
+      <li><span class="name">Académie du Palais royal</span><span class="role">Chœur et orchestre</span></li>
       <li><span class="name">Jean-Philippe Sarcos</span><span class="role">Direction</span></li>
     </ul>
     <h3>Qui chante quoi ?</h3>
@@ -581,7 +572,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
   </div>
 </section>
 
-<section id="lexique" class="hide-salle">
+<section id="lexique" class="hide-salle" style="--c: var(--orange)">
   <div class="wrap">
     <p class="sec-label">Petit lexique</p>
     <h2>Les mots du concert</h2>
@@ -597,18 +588,10 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
       <div><dt>Rythme pointé</dt><dd>Une alternance de notes longues et brèves (ta-da, ta-da) qui donne un caractère solennel et majestueux.</dd></div>
       <div><dt>Tutti</dt><dd>« Tous » en italien : le moment où tout le monde joue ou chante ensemble.</dd></div>
     </dl>
-  </div>
-</section>
-
-<section id="salle" class="hide-salle">
-  <div class="wrap">
-    <p class="sec-label">En salle</p>
-    <h2>Pour profiter pleinement du concert</h2>
+    <h3>Au moment d'applaudir</h3>
     <ul class="plain">
-      <li>Le concert dure environ 1 h 45, sans entracte. Il commence par une présentation des œuvres par Jean-Philippe Sarcos.</li>
-      <li>Mettez votre téléphone en silencieux. Si vous suivez ce guide pendant le concert, activez le <strong>Mode salle</strong> et baissez la luminosité au minimum.</li>
-      <li>Applaudissez après la symphonie de Bizet, puis une seule fois à la fin de la messe, et non entre ses mouvements.</li>
-      <li>Les silences font partie de la musique : quand le chef garde les bras levés à la fin d'un morceau, l'œuvre n'est pas encore tout à fait terminée.</li>
+      <li>Après la symphonie de Bizet, puis une seule fois à la fin de la messe, et non entre ses mouvements.</li>
+      <li>Quand le chef garde les bras levés à la fin d'un morceau, l'œuvre n'est pas encore tout à fait terminée : le silence fait partie de la musique.</li>
       <li>Gardez de la voix pour le bis !</li>
     </ul>
   </div>
@@ -616,8 +599,26 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
 
 </main>
 
-<footer class="end">
-  <div class="wrap">Guide du spectateur · Grande messe en ut mineur · Chœur et orchestre de l'Académie du Palais royal, Jean-Philippe Sarcos, direction · Traductions libres du texte latin.</div>
+<footer class="end hide-salle">
+  <div class="wrap">
+    <details>
+      <summary>Dates et accès</summary>
+      <ul class="dates">
+        <li><time datetime="2026-12-10T21:00">Jeu. 10/12 · 21 h</time><span class="place">Église Saint-François-de-Sales</span><span>15-17, rue Ampère, 75017 Paris · PMR : rampe sur la gauche</span></li>
+        <li><time datetime="2026-12-13T15:00">Dim. 13/12 · 15 h</time><span class="place">Église Saint-Honoré-d'Eylau</span><span>64 bis, avenue Raymond-Poincaré, 75116 Paris · PMR : rampe sur la gauche</span></li>
+        <li><time datetime="2026-12-16T21:00">Mer. 16/12 · 21 h</time><span class="place">Église Saint-Sulpice</span><span>2, rue Palatine, 75006 Paris · PMR : rampe</span></li>
+        <li><time datetime="2026-12-18T21:00">Ven. 18/12 · 21 h</time><span class="place">Église de la Sainte-Trinité</span><span>Place d'Estienne-d'Orves, 75009 Paris · PMR : rampe au 3, rue de Cheverus</span></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Pour aller plus loin</summary>
+      <ul class="dates">
+        <li><span class="place">Réécouter <em>La Nuit</em></span><a href="https://youtu.be/Vel-9_wA_WQ" target="_blank" rel="noopener">Enregistrement sur YouTube</a></li>
+        <li><span class="place">L'Académie du Palais royal</span><a href="https://academie-de-musique.com" target="_blank" rel="noopener">academie-de-musique.com</a></li>
+      </ul>
+    </details>
+    <p class="colophon">Guide du spectateur · Chœur et orchestre de l'Académie du Palais royal, Jean-Philippe Sarcos, direction · Traductions libres du texte latin.</p>
+  </div>
 </footer>
 
 <script>
@@ -628,7 +629,7 @@ footer.end { border-top: 1px solid var(--rule); margin-top: 3rem; padding-block:
   function set(on) {
     if (on) root.setAttribute('data-salle', ''); else root.removeAttribute('data-salle');
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    btn.textContent = on ? 'Quitter le mode salle' : 'Mode salle';
+    btn.textContent = on ? 'Quitter' : 'Mode salle';
     try { localStorage.setItem('salle', on ? '1' : '0'); } catch (e) {}
     if (on && navigator.wakeLock) {
       navigator.wakeLock.request('screen').then(function (l) { lock = l; }).catch(function () {});
