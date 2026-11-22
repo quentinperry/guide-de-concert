@@ -2,7 +2,7 @@ name: Publier le guide
 
 on:
   push:
-    branches: [main, claude/quirky-euler-2qa7ww]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
